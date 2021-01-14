@@ -7,6 +7,6 @@ sudo ufw allow ssh -y
 
 # install ansible
 sudo apt install software-properties-common -y
-apt-add-repository ppa:ansible/ansible -y
-apt-get update -y
-apt-get install ansible -y
+sudo apt-add-repository ppa:ansible/ansible -y
+sudo apt-get update -y
+sudo apt-get install ansible -y
