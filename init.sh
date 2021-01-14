@@ -19,4 +19,4 @@ sudo mkdir /github/
 sudo cd /github/
 #sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
 sudo git clone https://github.com/loomanss/ubuntu-install.git
-sudo cd ubuntu-install
+sudo cd /github/ubuntu-install
