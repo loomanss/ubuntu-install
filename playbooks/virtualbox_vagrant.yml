@@ -1,0 +1,8 @@
+---
+- name:  install virtualbox and vagrant if not present (ubuntu 20.04)
+  hosts: localhost
+  tasks:
+    - name: apt install virtualbox and vagrant if not present
+      apt:  
+       name: ['virtualbox','vagrant']
+       state: present
