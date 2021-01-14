@@ -17,5 +17,6 @@ sudo apt-get install ansible -y
 
 sudo mkdir /github/
 sudo cd /github/
-sudo git clone git@github.com:loomanss/ubuntu-install.git
-cd ubuntu-install
+sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
+sudo unzip main.zip
+sudo cd ubuntu-install-main
