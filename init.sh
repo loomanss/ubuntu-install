@@ -6,7 +6,7 @@ sudo systemctl status ssh -y
 sudo ufw allow ssh -y
 
 #install git
-sudo apt install git
+sudo apt install git -y
 
 # install ansible
 sudo apt install software-properties-common -y
