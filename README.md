@@ -8,4 +8,6 @@ curl -s https://raw.githubusercontent.com/loomanss/ubuntu-install/main/init.sh |
 
 curl -s https://raw.githubusercontent.com/loomanss/ubuntu-install/main/init.sh | bash /dev/stdin arg1 arg2
 
+wget -q http://mywebsite.com/myscript.txt -O 
+
 ```
