@@ -13,3 +13,9 @@ sudo apt install software-properties-common -y
 sudo apt-add-repository ppa:ansible/ansible -y
 sudo apt-get update -y
 sudo apt-get install ansible -y
+
+
+sudo mkdir /github/
+sudo cd /github/
+sudo git clone git@github.com:loomanss/ubuntu-install.git
+cd ubuntu-install
