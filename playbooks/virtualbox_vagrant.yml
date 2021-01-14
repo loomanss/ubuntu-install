@@ -4,5 +4,5 @@
   tasks:
     - name: apt install virtualbox and vagrant if not present
       apt:  
-       name: ['virtualbox','vagrant']
+       name: ['virtualbox','virtualbox-ext-pack','virtualbox-qt']
        state: present
