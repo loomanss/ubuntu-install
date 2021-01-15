@@ -15,6 +15,10 @@
     - name: Remove useless packages from the cache
       apt:
           autoclean: yes
+    - name: Creates directory /images
+      file:
+         path: /images
+         state: directory
     - name: Download file from a file path
       get_url:
        url: https://download.virtualbox.org/virtualbox/6.1.16/VBoxGuestAdditions_6.1.16.iso
