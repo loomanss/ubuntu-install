@@ -2,7 +2,7 @@
 - name:  install virtualbox and vagrant if not present (ubuntu 20.04)
   hosts: localhost
   vars:
-    virtualboxsource: 
+    ubuntu_url : https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso
   tasks:
     - name: apt install git if not present
       apt:  
@@ -25,7 +25,7 @@
        dest: /images/VBoxGuestAdditions_6.1.16.iso
     - name: Download file from a file path
       get_url:
-       url: https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso
+       url: "{{ ubuntu_url }}"
        dest: /images/ubuntu-20.04.1-live-server-amd64.iso
 
 
