@@ -19,20 +19,22 @@
       file:
          path: /images
          state: directory
-    - name: Download file from a file path
+    - name: Download Guestimage iso
       get_url:
        url: https://download.virtualbox.org/virtualbox/6.1.16/VBoxGuestAdditions_6.1.16.iso
        dest: /images/VBoxGuestAdditions_6.1.16.iso
-    - name: Download file from a file path
+    - name: Download ubuntu server image
       get_url:
        url: "{{ ubuntu_url }}"
        dest: /images/ubuntu-20.04.1-live-server-amd64.iso
-    - name: Download file from a file path
+    - name: Download Extention Pack
       get_url:
        url:  https://download.virtualbox.org/virtualbox/6.1.16/Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack
        dest: /images/Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack
     # 'cmd' is module parameter
-    - name: Run command if /path/to/database does not exist (with 'cmd' parameter).
+    - name: install extentionpack
+      command: VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack
+    - name: Extention pack cleanup
       command: VBoxManage extpack cleanup
 
 
