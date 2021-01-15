@@ -1,8 +1,17 @@
 ---
 - name:  install virtualbox and vagrant if not present (ubuntu 20.04)
   hosts: localhost
+  vars:
+    virtualboxsource: 
   tasks:
     - name: apt install virtualbox and vagrant if not present
       apt:  
-       name: ['virtualbox','virtualbox-ext-pack','virtualbox-qt']
+       name: ['git']
        state: present
+    - name: install deb file from virtualbox.org
+        apt:
+          deb: https://download.virtualbox.org/virtualbox/6.1.16/virtualbox-6.1_6.1.16-140961~Ubuntu~eoan_amd64.deb
+    - name: Remove useless packages from the cache
+        apt:
+          autoclean: yes
+
