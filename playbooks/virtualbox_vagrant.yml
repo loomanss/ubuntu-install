@@ -6,7 +6,7 @@
   tasks:
     - name: apt install git if not present
       apt:  
-       name: ['git']
+       name: ['git','mlocate']
        state: present
     - name: install deb file from virtualbox.org
       apt:
