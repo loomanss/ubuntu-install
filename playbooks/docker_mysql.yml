@@ -4,6 +4,6 @@
   tasks:
     - name: Load image from archive and push to a private registry
       community.general.docker_image:
-        - name: mysql
+          name: mysql
           tag: v5.7
           source: pull
