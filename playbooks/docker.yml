@@ -3,8 +3,6 @@
   # source:  https://graspingtech.com/install-docker-ansible/
   hosts: localhost
   become: yes
-  vars:
-    docker_compose_version: "1.27.4"
   tasks:
 
     - name: Update apt cache
@@ -22,13 +20,7 @@
     - name: Add Docker APT repository
       apt_repository:
          repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-      
-      
-    - name: Add apt repository for stable version
-      apt_repository:
-        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-        state: present
-    
+        
     - name: Update apt cache
       apt: update_cache=yes cache_valid_time=3600
     
