@@ -2,6 +2,7 @@
 - name: install mysql docker image
   hosts: localhost
   tasks:
+    
     - name: Load image from archive and push to a private registry
       community.general.docker_image:
           name: mysql
