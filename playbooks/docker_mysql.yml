@@ -1,5 +1,9 @@
-- name: Pull an Mysql image
-  community.general.docker_image:
-    name: mysql
-    tag: v5.7
-    source: pull
+---
+- name: install mysql docker image
+  hosts: localhost
+  tasks:
+  - name: Pull an Mysql image
+    community.general.docker_image:
+      name: mysql
+      tag: v5.7
+      source: pull
