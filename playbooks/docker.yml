@@ -26,7 +26,6 @@
       
     - name: Add apt repository for stable version
       apt_repository:
-      
         repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
         state: present
     
@@ -38,10 +37,7 @@
        name: ['docker-ce','docker-ce-cli ','containerd.io']
        state: present
 
-  - name: Install prerequisites for docker-compose
-    apt:
-      name: ['python3-pip', 'python3-setuptools', 'virtualenv']
-
-  - name: Install docker-compose
-    pip:
-      name: docker-compose
+    - name: Install docker-compose and prerequisites for docker-compose
+      apt:
+        name: ['python3-pip', 'python3-setuptools', 'virtualenv','docker-compose']
+        state: present
