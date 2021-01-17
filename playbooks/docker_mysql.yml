@@ -2,8 +2,8 @@
 - name: install mysql docker image
   hosts: localhost
   tasks:
-    - name: Pull an Mysql image
+    - name: Load image from archive and push to a private registry
       community.general.docker_image:
-        name: mysql
-        tag: v5.7
-        source: pull
+        - name: mysql
+          tag: v5.7
+          source: pull
