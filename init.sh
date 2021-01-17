@@ -18,7 +18,7 @@ ansible-galaxy collection install community.general
 ansible-galaxy collection install community.docker
 
 sudo mkdir /github/
-sudo cd /github/
+cd /github/
 #sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
 sudo git clone https://github.com/loomanss/ubuntu-install.git
 sudo cd /github/ubuntu-install
