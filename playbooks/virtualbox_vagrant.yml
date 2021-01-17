@@ -1,5 +1,5 @@
 ---
-- name:  install virtualbox and vagrant if not present (ubuntu 20.04)
+- name:  install virtualbox and vagrant if not present (ubuntu 20.04) by using this script you're accpeting the licence agreement of Virtualbox.org
   hosts: localhost
   vars:
     ubuntu_url : https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso
@@ -33,7 +33,7 @@
        dest: /images/Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack
     # 'cmd' is module parameter
     - name: install extentionpack
-      command: VBoxManage extpack install /images/Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack
+      command: VBoxManage extpack install /images/Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack --accept-license=33d7284dc4a0ece381196fda3cfe2ed0e1e8e7ed7f27b9a9ebc4ee22e24bd23c
     - name: Extention pack cleanup
       command: VBoxManage extpack cleanup
 
