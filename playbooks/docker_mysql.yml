@@ -2,9 +2,17 @@
 - name: install mysql docker image
   hosts: localhost
   tasks:
-    
-    - name: Load image from archive and push to a private registry
-      community.general.docker_image:
-          name: mysql
-          tag: v5.7
-          source: pull
+
+    - name: log in to dockerhub
+      community.docker.docker_login:
+        state: present
+        registry_url: "https://index.docker.io/v1/" # dockerhub
+        username: {{ user }}
+        password: {{ pass }}
+
+
+    - name: Pull the mysql image
+      community.docker.docker_image:
+       name: "mysql:5.6"
+       source: pull
+       state: present
