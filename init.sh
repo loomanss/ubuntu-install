@@ -2,7 +2,8 @@
 # install ssh server
 echo update & upgrade
 echo -------------------------------------------------------------------------
-sudo apt update && sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
 sudo ufw allow ssh 
 echo
 echo
@@ -15,7 +16,10 @@ echo
 echo  add repo key
 echo -------------------------------------------------------------------------
 sudo apt-add-repository ppa:ansible/ansible -y
+echo
+echo
 echo  updating repo
+echo -------------------------------------------------------------------------
 sudo apt-get update
 
 echo INSTALL ansible
