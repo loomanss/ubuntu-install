@@ -4,6 +4,7 @@
   vars:
     checkmk_url_deb : https://download.checkmk.com/checkmk/1.6.0p20/check-mk-raw-1.6.0p20_0.focal_amd64.deb
     sitename : monitor
+    admin_password : bomber-safe
   tasks:
   
     - name: Import a key from a checkmk APT repository
@@ -28,3 +29,13 @@
         
     - name: Extention pack cleanup
       command: omd create {{ sitename }}
+
+    - name: Set admin password
+      command: "htpasswd -b /opt/omd/sites/{{ sitename }}/etc/htpasswd omdadmin '{{ admin_password }}'"
+        become: true
+        when: admin_password is defined
+
+    - name: Restart site
+      command: "omd restart {{ item.name }}"
+      become: true
+      when: site_created is changed
