@@ -14,8 +14,8 @@ sudo apt-add-repository ppa:ansible/ansible -y
 sudo apt-get update -y
 sudo apt-get install ansible -y
 # install community collections
-ansible-galaxy collection install community.general
-ansible-galaxy collection install community.docker
+# ansible-galaxy collection install community.general
+# ansible-galaxy collection install community.docker
 
 sudo mkdir /github/
 cd /github/
