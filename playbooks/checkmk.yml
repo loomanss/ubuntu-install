@@ -32,8 +32,8 @@
 
     - name: Set admin password
       command: "htpasswd -b /opt/omd/sites/{{ sitename }}/etc/htpasswd omdadmin '{{ admin_password }}'"
-        become: true
-        when: admin_password is defined
+      become: true
+      when: admin_password is defined
 
     - name: Restart site
       command: "omd restart {{ item.name }}"
