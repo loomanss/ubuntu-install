@@ -10,11 +10,7 @@
       state: present
     
   - name: Add hashicorp APT repository
-    apt_repository:
-         repo: deb [arch=amd64] https://apt.releases.hashicorp.com focal main
-         
-  - name: Update
-    raw: "apt-get -y update"
+    apt_repository: repo='deb     https://apt.releases.hashicorp.com focal main' state=present update_cache=yes
  
   - name: Install Packer image from apt-repo
     apt:  
