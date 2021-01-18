@@ -21,6 +21,7 @@
       apt: 
         deb: "{{ checkmk_url_deb }}"
         state: present
+      become: true
       tags: install
         
     - name: Create {{ sitename }}
