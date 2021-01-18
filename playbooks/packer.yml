@@ -7,7 +7,7 @@
       key: https://apt.releases.hashicorp.com/gpg
     
   - name: Add hashicorp APT repository
-      apt_repository:
+    apt_repository:
          repo: deb [arch=amd64] https://apt.releases.hashicorp.com focal main
          
   - name: Update apt cache
