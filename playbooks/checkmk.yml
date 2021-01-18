@@ -36,6 +36,6 @@
       when: admin_password is defined
 
     - name: Restart site
-      command: "omd restart {{ item.name }}"
+      command: "omd restart {{ sitename }}"
       become: true
       when: site_created is changed
