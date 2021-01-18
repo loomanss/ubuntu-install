@@ -1,5 +1,6 @@
 ---
 - name: install packer 
+  hosts: localhost
   tasks:
   - name: Import a key from a hashicorp APT repository
     ansible.builtin.rpm_key:
