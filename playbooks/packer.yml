@@ -5,8 +5,8 @@
   
   - name: Import a key from a hashicorp APT repository
     ansible.builtin.apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
-    state: present
+      url: https://apt.releases.hashicorp.com/gpg
+      state: present
     
   - name: Add hashicorp APT repository
     apt_repository:
