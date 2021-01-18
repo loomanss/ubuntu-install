@@ -15,7 +15,7 @@ echo
 echo
 echo  add repo key
 echo -------------------------------------------------------------------------
-sudo apt-add-repository ppa:ansible/ansible -y
+# sudo apt-add-repository ppa:ansible/ansible -y
 echo
 echo
 echo  updating repo
