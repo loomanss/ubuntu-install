@@ -25,8 +25,9 @@
         
     - name: Create {{ sitename }}
       command: omd create {{ sitename }}
-      tags: install
-
+      args:
+        creates: /opt/omd/sites/{{ sitename }}
+        
     - name: Set admin password
       command: "htpasswd -b /opt/omd/sites/{{ sitename }}/etc/htpasswd omdadmin '{{ admin_password }}'"
       become: true
