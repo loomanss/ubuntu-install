@@ -2,10 +2,11 @@
 - name: install packer 
   hosts: localhost
   tasks:
+  
   - name: Import a key from a hashicorp APT repository
-    ansible.builtin.rpm_key:
-      state: present
-      key: https://apt.releases.hashicorp.com/gpg
+    ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+    state: present
     
   - name: Add hashicorp APT repository
     apt_repository:
