@@ -17,5 +17,5 @@
       
   - name: Install Packer image from apt-repo
     apt:  
-      name: ['packer']
+      name: ['packer','vagrant']
       state: present
