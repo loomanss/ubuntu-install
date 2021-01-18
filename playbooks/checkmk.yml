@@ -33,4 +33,3 @@
     - name: Restart site
       command: "omd restart {{ sitename }}"
       become: true
-      when: site_created is changed
