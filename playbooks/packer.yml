@@ -1,5 +1,6 @@
 ---
 - name: install packer 
+  gather_facts: false
   hosts: localhost
   tasks:
   
@@ -12,9 +13,8 @@
     apt_repository:
          repo: deb [arch=amd64] https://apt.releases.hashicorp.com focal main
          
-  - name: Update repositories cache
-    apt:
-      update_cache: yes
+  - name: Update
+    raw: "apt-get -y update"
  
   - name: Install Packer image from apt-repo
     apt:  
