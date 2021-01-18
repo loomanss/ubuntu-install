@@ -1,0 +1,19 @@
+---
+- name: install packer 
+  tasks:
+  - name: Import a key from a hashicorp APT repository
+    ansible.builtin.rpm_key:
+      state: present
+      key: https://apt.releases.hashicorp.com/gpg
+    
+  - name: Add hashicorp APT repository
+      apt_repository:
+         repo: deb [arch=amd64] https://apt.releases.hashicorp.com focal main
+         
+  - name: Update apt cache
+      apt: update_cache=yes cache_valid_time=3600
+ 
+     - name: Install Packer image from apt-repo
+      apt:  
+       name: ['packer']
+       state: present
