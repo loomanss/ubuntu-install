@@ -21,15 +21,19 @@
       apt: 
         deb: "{{ checkmk_url_deb }}"
         state: present
+      tags: install
         
     - name: Create {{ sitename }}
       command: omd create {{ sitename }}
+      tags: install
 
     - name: Set admin password
       command: "htpasswd -b /opt/omd/sites/{{ sitename }}/etc/htpasswd omdadmin '{{ admin_password }}'"
       become: true
       when: admin_password is defined
+      tags: install
 
     - name: Restart site
       command: "omd restart {{ sitename }}"
       become: true
+      tags: config
