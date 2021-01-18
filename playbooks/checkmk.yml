@@ -21,13 +21,8 @@
       apt: 
         deb: "{{ checkmk_url_deb }}"
         state: present
-
-    - name: install check-mk deb file
-      apt: 
-        deb: "{{ checkmk_url_deb }}"
-        state: present
         
-    - name: Extention pack cleanup
+    - name: Create {{ sitename }}
       command: omd create {{ sitename }}
 
     - name: Set admin password
