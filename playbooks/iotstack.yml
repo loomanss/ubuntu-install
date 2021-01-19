@@ -51,6 +51,12 @@
        state: started
        restart: yes
        
+    - name: Allow port 8123
+        community.general.ufw:
+          rule: allow
+          port: 8123
+          proto: tcp
+       
     - name: Create portainer container
       docker_container:
        name: portainer
@@ -60,5 +66,10 @@
          - 9000
        state: started
        restart: yes
-         
+       
+    - name: Allow port 9000
+        community.general.ufw:
+          rule: allow
+          port: 9000
+          proto: tcp
 #eof
