@@ -28,14 +28,17 @@
       command: omd create {{ sitename }}
       args:
         creates: /opt/omd/sites/{{ sitename }}
-        
+      register: sitename_created
+      
     - name: Set admin password
       command: "htpasswd -b /opt/omd/sites/{{ sitename }}/etc/htpasswd omdadmin '{{ admin_password }}'"
-      become: true
       when: admin_password is defined
+      become: true
       tags: install
 
     - name: Restart site
       command: "omd restart {{ sitename }}"
-      become: true
       tags: config
+      when: sitename_created is changed
+      become: true
+
