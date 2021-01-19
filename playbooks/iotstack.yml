@@ -13,7 +13,7 @@
 
     - name: Pull homeassistant image
       community.docker.docker_image:
-       name: "homeassistant/home-assistant"
+       name: "homeassistant/home-assistant:stable"
        source: pull
        state: present
    
@@ -41,5 +41,14 @@
        source: pull
        state: present
        
-
+    - name: Create homeassistant container
+      community.general.docker_container:
+       name: hassio
+       image: homeassistant/home-assistant
+       exposed_ports:
+         - 8123
+       volumes:
+         - /data
+         
+         
 #eof
