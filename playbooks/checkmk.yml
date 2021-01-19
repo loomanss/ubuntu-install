@@ -26,7 +26,7 @@
       apt: 
         deb: "{{ checkmk_url_deb }}"
         state: present
-      when: "'{{ packagename }}' in ansible_facts.packages"
+      when: "'{{ packagename }}' not in ansible_facts.packages"
       become: true
       tags: install
         
