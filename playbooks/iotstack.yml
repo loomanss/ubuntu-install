@@ -20,7 +20,7 @@
        source: pull
        state: present
    
-   - name: Pull portainer image
+    - name: Pull portainer image
       community.docker.docker_image:
        name: "portainer/portainer"
        source: pull
