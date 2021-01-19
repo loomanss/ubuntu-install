@@ -45,6 +45,7 @@
       docker_container:
        name: hassio
        image: homeassistant/home-assistant
+       network_mode: host
        exposed_ports:
          - 8123
        state: started
