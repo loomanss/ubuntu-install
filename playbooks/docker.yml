@@ -17,12 +17,12 @@
        state: present
        
        
-    - name: Add Docker APT repository
-      apt_repository:
-         repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-        
+    - name: Add hashicorp APT repository
+      apt_repository: repo='deb    https://download.docker.com/linux/ubuntu focal stable state=present update_cache=no
+ 
     - name: Update apt cache
       apt: update_cache=yes cache_valid_time=3600
+       
     
     - name: Install Docker ce
       apt:  
