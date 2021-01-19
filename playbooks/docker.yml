@@ -16,7 +16,11 @@
        name: ['apt-transport-https','ca-certificates','curl','software-properties-common','gnupg-agent']
        state: present
        
-       
+    - name: Import a key from a Docker APT repository
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+      
     - name: Add hashicorp APT repository
       apt_repository: repo='deb    https://download.docker.com/linux/ubuntu focal stable' state=present update_cache=no
  
