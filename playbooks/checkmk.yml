@@ -2,11 +2,16 @@
 - name:  install checkmk
   hosts: localhost
   vars:
+    packagename : check-mk-raw-1.6.0p20
     checkmk_url_deb : https://download.checkmk.com/checkmk/1.6.0p20/check-mk-raw-1.6.0p20_0.focal_amd64.deb
     sitename : monitor
     admin_password : bomber-safe
   tasks:
   
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
+        
     - name: Import a key from a checkmk APT repository
       ansible.builtin.apt_key:
         url: https://download.checkmk.com/checkmk/Check_MK-pubkey.gpg
@@ -21,6 +26,7 @@
       apt: 
         deb: "{{ checkmk_url_deb }}"
         state: present
+      when: "'{{ packagename }}' in ansible_facts.packages"
       become: true
       tags: install
         
