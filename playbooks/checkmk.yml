@@ -21,7 +21,7 @@
       
     - name: apt install git if not present
       apt:  
-       name: ['openssh-server','dpkg-sig','gdebi-core']
+       name: ['openssh-server','dpkg-sig','gdebi-core','net-tools']
        state: present
 
     - name: install check-mk deb file
