@@ -50,5 +50,15 @@
          - 8123
        state: started
        restart: yes
+       
+    - name: Create portainer container
+      docker_container:
+       name: portainer
+       image: portainer/portainer
+       network_mode: host
+       exposed_ports:
+         - 9000
+       state: started
+       restart: yes
          
 #eof
