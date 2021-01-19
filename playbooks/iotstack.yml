@@ -62,7 +62,7 @@
        name: portainer
        image: portainer/portainer
        volumes:
-          - /var/run/docker.sock:/var/run/docker.sock
+          - /var/run/docker.sock:/usr/lib/systemd/system/docker.socket
        network_mode: host
        exposed_ports:
          - 9000
