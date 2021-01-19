@@ -2,8 +2,10 @@
 - name:  install checkmk
   hosts: localhost
   vars:
-    packagename : check-mk-raw-1.6.0p20
-    checkmk_url_deb : https://download.checkmk.com/checkmk/1.6.0p20/check-mk-raw-1.6.0p20_0.focal_amd64.deb
+    # packagename : check-mk-raw-1.6.0p20
+    # checkmk_url_deb : https://download.checkmk.com/checkmk/1.6.0p20/check-mk-raw-1.6.0p20_0.focal_amd64.deb
+    checkmk_url_deb : http://192.168.1.66:8000/check-mk-enterprise-1.6.0p20_0.focal_amd64.deb
+    packagename : check-mk-enterprise-1.6.0p20_0
     sitename : monitor
     admin_password : bomber-safe
   tasks:
