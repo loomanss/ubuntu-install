@@ -47,6 +47,7 @@
        image: homeassistant/home-assistant
        exposed_ports:
          - 8123
-        
+       state: started
+       restart: yes
          
 #eof
