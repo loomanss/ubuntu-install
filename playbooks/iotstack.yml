@@ -51,14 +51,14 @@
        state: present
        
     - name: Re-create a redis container
-       community.general.docker_container:
+      community.general.docker_container:
        name: myredis
        image: influxdb
        command: redis-server --appendonly yes
-    state: present
-    recreate: yes
-    exposed_ports:
-      - 6379
-    volumes_from:
-      - mydata
+      state: present
+      recreate: yes
+      exposed_ports:
+        - 6379
+      volumes_from:
+        - mydata
 #eof
