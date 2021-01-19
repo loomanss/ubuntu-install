@@ -48,4 +48,9 @@
       tags: config
       when: sitename_created is changed
       become: true
-
+      
+    - name: Allow port 6556
+      community.general.ufw:
+        rule: allow
+        port: 6566
+        proto: tcp
