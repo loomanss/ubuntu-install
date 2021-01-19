@@ -2,9 +2,6 @@
 ---
 - name: install mysql docker image
   hosts: localhost
-  vars:
-    user : user
-    pass : password
   tasks:
 
     - name: log in to dockerhub
@@ -26,12 +23,6 @@
        source: pull
        state: present
   
-    - name: Pull nodered/node-red image
-      community.docker.docker_image:
-       name: "nodered/node-red"
-       source: pull
-       state: present
-     
     - name: Pull nodered/node-red image
       community.docker.docker_image:
        name: "nodered/node-red"
