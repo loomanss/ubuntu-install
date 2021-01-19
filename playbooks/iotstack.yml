@@ -8,8 +8,8 @@
       community.docker.docker_login:
         state: present
         registry_url: "https://index.docker.io/v1/" # dockerhub
-        username: {{ user }}
-        password: {{ pass }}
+        username: "{{ user }}"
+        password: "{{ pass }}"
 
     - name: Pull homeassistant image
       community.docker.docker_image:
