@@ -67,9 +67,9 @@
        state: started
        restart: yes
        
-    - name: Allow port 80
+    - name: Allow port 9000
       community.general.ufw:
         rule: allow
-        port: 80
-        proto: http
+        port: 9000
+        proto: tcp
 #eof
