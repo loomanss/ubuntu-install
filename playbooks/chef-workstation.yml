@@ -16,7 +16,12 @@
         path: /cookbooks/first_cookbook/recipes
         state: directory
         
-           
+    - name: Create file1
+      ansible.builtin.file:
+        state: touch
+        path:  /cookbooks/first_cookbook/recipes/default.rb
+        
+        
     - name: Insert content to file
       blockinfile:
         block: " file \"#{ENV['HOME']}/test.txt\" do \n     content 'This file was created by Chef Infra!'\n end"
