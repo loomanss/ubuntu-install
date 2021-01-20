@@ -83,21 +83,21 @@
         port: "{{ port_portainer }}"
         proto: tcp
         
-  #  - name: Create Grafana container
-  #    docker_container:
-  #     name: prometheus
-  #     image: grafana/grafana
-  #     network_mode: host
-  #     exposed_ports:
-  #       - "{{ port_grafana }}"
-  #     state: started
-  #     restart: yes
-  #     env:
-  #      GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource"
-       
-  #  - name: Allow port  "{{ port_grafana }}" for Grafana
-  #    community.general.ufw:
-  #        rule: allow
-  #        port:  "{{ port_grafana }}"
-  #        proto: tcp
+    - name: Create Grafana container
+      docker_container:
+       name: prometheus
+       image: grafana/grafana
+       network_mode: host
+       exposed_ports:
+         - "{{ port_grafana }}"
+       state: started
+       restart: yes
+       env:
+        GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource"
+      
+    - name: Allow port  "{{ port_grafana }}" for Grafana
+      community.general.ufw:
+          rule: allow
+          port:  "{{ port_grafana }}"
+          proto: tcp
 #eof
