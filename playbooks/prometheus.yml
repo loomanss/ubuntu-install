@@ -3,8 +3,8 @@
 - name: Prometheus installation playbook
   hosts: localhost
   vars:
-    port_prometheus: 9090 
-    port_grafana: 3000 
+    port_prometheus: 3000 
+    port_grafana: 3001
     port_portainer: 9000
   tasks:
 
@@ -39,8 +39,8 @@
        name: prometheus
        image: prom/prometheus
        network_mode: host
-       published_ports:
-         - 9091:3000
+       exposed_ports:
+         - "{{ port_prometheus }}"
        state: started
        restart: yes
        
