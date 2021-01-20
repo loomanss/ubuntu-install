@@ -40,9 +40,10 @@
        image: prom/prometheus
        network_mode: host
        ports:
-         - "{{ port_prometheus }}:3000"
+         - 9091:9090
        state: started
-       restart: yes
+       restart: unless-stopped
+       mem_limit: 500m
        
     - name: Allow port "{{ port_prometheus }}" for prometheus
       community.general.ufw:
