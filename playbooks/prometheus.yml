@@ -1,0 +1,83 @@
+# cat >> prometheus.yml << #eof
+---
+- name: Prometheus installation playbook
+  hosts: localhost
+  tasks:
+
+    - name: log in to dockerhub
+      community.docker.docker_login:
+        state: present
+        registry_url: "https://index.docker.io/v1/" # dockerhub
+        username: "{{ user }}"
+        password: "{{ pass }}"
+
+    - name: Pull prometheus image
+      community.docker.docker_image:
+       name: "prom/prometheus:stable"
+       source: pull
+       state: present
+   
+    - name: Pull portainer image
+      community.docker.docker_image:
+       name: "portainer/portainer:stable"
+       source: pull
+       state: present
+        
+    - name: Pull grafana image
+      community.docker.docker_image:
+       name: "grafana/grafana:stable"
+       source: pull
+       state: present
+
+       
+    - name: Create prometheus container
+      docker_container:
+       name: prometheus
+       image: prom/prometheus
+       network_mode: host
+       exposed_ports:
+         - 9090
+       state: started
+       restart: yes
+       
+    - name: Allow port 9090
+      community.general.ufw:
+          rule: allow
+          port: 9090
+          proto: tcp
+       
+    - name: Create portainer container
+      docker_container:
+       name: portainer
+       image: portainer/portainer
+       volumes:
+          - /var/run/docker.sock:/var/run/docker.sock 
+          - portainer_data:/data portainer/portainer-ce 
+       network_mode: host
+       exposed_ports:
+         - 9000
+       state: started
+       restart: yes
+       
+    - name: Allow port 9000
+      community.general.ufw:
+        rule: allow
+        port: 9000
+        proto: tcp
+        
+  - name: Create Grafana container
+      docker_container:
+       name: prometheus
+       image: grafana/grafana
+       network_mode: host
+       exposed_ports:
+         - 3000
+       state: started
+       restart: yes
+       
+    - name: Allow port 3000
+      community.general.ufw:
+          rule: allow
+          port: 3000
+          proto: tcp
+#eof
