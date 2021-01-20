@@ -1,0 +1,13 @@
+# cat >> chef-workstation.yml << #eof
+---
+- name: chef-workstation installation playbook
+  hosts: localhost
+  vars:
+  tasks:
+
+    - name: install chef-workstation deb file
+      apt:
+        deb:https://packages.chef.io/files/stable/chef-workstation/21.1.233/ubuntu/20.04/chef-workstation_21.1.233-1_amd64.deb
+        state: present
+
+#eof
