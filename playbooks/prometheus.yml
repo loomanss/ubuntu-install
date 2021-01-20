@@ -41,8 +41,8 @@
        network_mode: host
        ports:
          - 9091:9090
-       state: false
-       restart: unless-stopped
+       state: started
+       restart: yes
        
     - name: Allow port "{{ port_prometheus }}" for prometheus
       community.general.ufw:
