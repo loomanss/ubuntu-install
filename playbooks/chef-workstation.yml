@@ -19,9 +19,7 @@
            
     - name: Insert content to file
       blockinfile:
-        block: "file "#{ENV['HOME']}/test.txt" do
-                content 'This file was created by Chef Infra!'
-                end"
+        block: " file \"#{ENV['HOME']}/test.txt\" do \n     content 'This file was created by Chef Infra!'\n end"
         path: /cookbooks/first_cookbook/recipes/default.rb
 
 end
