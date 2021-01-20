@@ -28,7 +28,8 @@
       apt_repository: repo='deb    https://download.docker.com/linux/ubuntu focal stable' state=present update_cache=no
  
     - name: Update apt cache
-      apt: update_cache=yes cache_valid_time=3600
+      # apt: update_cache=yes cache_valid_time=3600
+      command: apt update
     
     - name: Install Docker Module for Python
       pip:
