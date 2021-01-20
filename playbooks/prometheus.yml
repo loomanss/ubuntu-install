@@ -78,6 +78,8 @@
          - "{{ port_grafana }}"
        state: started
        restart: yes
+       env:
+        GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource"
        
     - name: Allow port  "{{ port_grafana }}" for Grafana
       community.general.ufw:
