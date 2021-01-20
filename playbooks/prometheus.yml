@@ -40,14 +40,14 @@
        image: prom/prometheus
        network_mode: host
        exposed_ports:
-         - {{ port_prometheus }}
+         - "{{ port_prometheus }}"
        state: started
        restart: yes
        
-    - name: Allow port {{ port_prometheus }} for prometheus
+    - name: Allow port "{{ port_prometheus }}" for prometheus
       community.general.ufw:
           rule: allow
-          port: {{ port_prometheus }}
+          port: "{{ port_prometheus }}"
           proto: tcp
        
     - name: Create portainer container
@@ -59,14 +59,14 @@
           - portainer_data:/data portainer/portainer-ce 
        network_mode: host
        exposed_ports:
-         - {{ port_portainer }}
+         - "{{ port_portainer }}"
        state: started
        restart: yes
        
-    - name: Allow port {{ port_portainer }} for portianer
+    - name: Allow port "{{ port_portainer }}" for portianer
       community.general.ufw:
         rule: allow
-        port: {{ port_portainer }}
+        port: "{{ port_portainer }}"
         proto: tcp
         
     - name: Create Grafana container
@@ -75,13 +75,13 @@
        image: grafana/grafana
        network_mode: host
        exposed_ports:
-         - {{ port_grafana }}
+         - "{{ port_grafana }}"
        state: started
        restart: yes
        
-    - name: Allow port  - {{ port_grafana }} for Grafana
+    - name: Allow port  "{{ port_grafana }}" for Grafana
       community.general.ufw:
           rule: allow
-          port:  {{ port_grafana }}
+          port:  "{{ port_grafana }}"
           proto: tcp
 #eof
