@@ -41,7 +41,7 @@
        network_mode: host
        ports:
          - 9091:9090
-       state: started
+       state: false
        restart: unless-stopped
        
     - name: Allow port "{{ port_prometheus }}" for prometheus
