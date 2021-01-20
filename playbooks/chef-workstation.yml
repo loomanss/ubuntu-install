@@ -20,8 +20,13 @@
     - name: create hello world cookbook for chef
       blockinfile:
         path: /cookbooks/first_cookbook/recipes/default.rb
+      blockinfile:
+        path: /etc/network/interfaces
         block: |
-        file "#{ENV['HOME']}/test.txt" do
-        content 'This file was created by Chef Infra!'
+            iface eth0 inet static
+            address 192.0.2.23
+            netmask 255.255.255.0
+            file "#{ENV['HOME']}/test.txt" do
+            content 'This file was created by Chef Infra!'
 end
 #eof
