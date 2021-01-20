@@ -23,13 +23,13 @@
    
     - name: Pull portainer image
       community.docker.docker_image:
-       name: "portainer/portainer:stable"
+       name: "portainer/portainer"
        source: pull
        state: present
         
     - name: Pull grafana image
       community.docker.docker_image:
-       name: "grafana/grafana:stable"
+       name: "grafana/grafana"
        source: pull
        state: present
 
