@@ -52,13 +52,13 @@
           port: "{{ port_prometheus }}"
           proto: tcp
           
-     - name: Allow port 8000 for prometheus
+    - name: Allow port 8000 for prometheus
       community.general.ufw:
           rule: allow
           port: 8000
           proto: tcp
 
-     - name: Allow port 9090 for prometheus
+    - name: Allow port 9090 for prometheus
       community.general.ufw:
           rule: allow
           port: 9090
