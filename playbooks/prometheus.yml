@@ -3,8 +3,10 @@
 - name: Prometheus installation playbook
   hosts: localhost
   vars:
-    port_prometheus: 9090 
-    port_grafana: 3001
+    port_prometheus1 : 9090 
+    port_prometheus2 : 9093 
+    port_prometheus3 : 8000 
+    port_grafana: 3000
     port_portainer: 9000
   tasks:
 
@@ -40,28 +42,28 @@
        image: prom/prometheus
        network_mode: host
        exposed_ports:
-         - "{{ port_prometheus }}"
-         - 9093
-         - 8000
+         - "{{ port_prometheus1 }}"
+         - "{{ port_prometheus2 }}"
+         - "{{ port_prometheus3 }}"
        state: started
        restart: yes
        
-    - name: Allow port "{{ port_prometheus }}" for prometheus
+    - name: Allow port "{{ port_prometheus1 }}" for prometheus
       community.general.ufw:
           rule: allow
-          port: "{{ port_prometheus }}"
+          port: "{{ port_prometheus1 }}"
           proto: tcp
           
-    - name: Allow port 8000 for prometheus
+    - name: Allow port "{{ port_prometheus2 }}" for prometheus
       community.general.ufw:
           rule: allow
-          port: 8000
+          port: "{{ port_prometheus2 }}"
           proto: tcp
 
-    - name: Allow port 9090 for prometheus
+    - name: Allow port "{{ port_prometheus3 }}" for prometheus
       community.general.ufw:
           rule: allow
-          port: 9090
+          port: "{{ port_prometheus3 }}"
           proto: tcp
           
     - name: Create portainer container
@@ -85,7 +87,7 @@
         
     - name: Create Grafana container
       docker_container:
-       name: prometheus
+       name: grafana
        image: grafana/grafana
        network_mode: host
        exposed_ports:
