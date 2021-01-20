@@ -1,5 +1,6 @@
 # cat >> chef-workstation.yml << #eof
 ---
+  # https://docs.chef.io/quick_start/
 - name: chef-workstation installation playbook
   hosts: localhost
   vars:
