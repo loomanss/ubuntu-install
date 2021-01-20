@@ -25,9 +25,15 @@ sudo apt-get update
 echo INSTALL ansible
 echo -------------------------------------------------------------------------
 sudo apt-get install ansible -y
-# install community collections
-# ansible-galaxy collection install community.general
-# ansible-galaxy collection install community.docker
+
+echo INSTALL ansible galaxy community.general 
+echo -------------------------------------------------------------------------
+ansible-galaxy collection install community.general
+
+echo INSTALL ansible galaxy community.docker 
+echo -------------------------------------------------------------------------
+ansible-galaxy collection install community.docker
+
 echo 
 echo download playbook repo
 echo -------------------------------------------------------------------------
