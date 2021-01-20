@@ -69,7 +69,7 @@
         port: {{ port_portainer }}
         proto: tcp
         
-  - name: Create Grafana container
+    - name: Create Grafana container
       docker_container:
        name: prometheus
        image: grafana/grafana
