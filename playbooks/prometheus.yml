@@ -3,11 +3,13 @@
 - name: Prometheus installation playbook
   hosts: localhost
   vars:
+    # GUI's
     port_prometheus1 : 9090 
-    port_prometheus2 : 9093 
-    port_prometheus3 : 8000 
     port_grafana: 3000
     port_portainer: 9000
+    # OTHER
+    port_prometheus2 : 9093 
+    port_prometheus3 : 8000 
   tasks:
 
     - name: log in to dockerhub
