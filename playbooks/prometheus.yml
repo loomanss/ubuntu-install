@@ -40,10 +40,7 @@
        image: prom/prometheus
        network_mode: host
        ports:
-         # Publish container port 3000 as host port port_prometheus
          - "{{ port_prometheus }}:3000"
-       # exposed_ports:
-       #  - "{{ port_prometheus }}"
        state: started
        restart: yes
        
