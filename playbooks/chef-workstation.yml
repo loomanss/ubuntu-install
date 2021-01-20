@@ -10,5 +10,18 @@
       apt:
         deb:https://packages.chef.io/files/stable/chef-workstation/21.1.233/ubuntu/20.04/chef-workstation_21.1.233-1_amd64.deb
         state: present
-
+        
+    - name: Creates cookbooks Directory
+      file:
+        path: /cookbooks/first_cookbook/recipes
+        state: directory
+        
+        
+    - name: create hello world cookbook for chef
+      blockinfile:
+        path: /cookbooks/first_cookbook/recipes/default.rb
+        block: |
+        file "#{ENV['HOME']}/test.txt" do
+        content 'This file was created by Chef Infra!'
+end
 #eof
