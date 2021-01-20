@@ -39,8 +39,8 @@
        name: prometheus
        image: prom/prometheus
        network_mode: host
-       ports:
-         - 9091:9090
+       published_ports:
+         - 9091:3000
        state: started
        restart: yes
        
