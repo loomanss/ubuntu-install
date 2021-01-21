@@ -11,6 +11,10 @@ echo installing prerequisites
 echo -------------------------------------------------------------------------
 sudo apt install software-properties-common git openssh-server  -y
 
+
+git config --global user.email $1
+git config --global user.name $2
+
 echo 
 echo
 echo  add repo key
