@@ -6,7 +6,7 @@
   vars:
   tasks:
   
-    - name: Install Docker ce
+    - name: Install ruby
       apt:  
        name: ['ruby']
        state: present
@@ -16,19 +16,11 @@
         deb: https://packages.chef.io/files/stable/chef-workstation/21.1.233/ubuntu/20.04/chef-workstation_21.1.233-1_amd64.deb
         state: present
         
-    - name: Creates cookbooks Directory
-      file:
-        path: /cookbooks/first_cookbook/recipes
-        state: directory
-        
-    - name: Create file1
-      ansible.builtin.file:
-        state: touch
-        path:  /cookbooks/first_cookbook/recipes/default.rb
-        
-        
-    - name: Insert content to file
-      blockinfile:
-        block: " file \"#{ENV['HOME']}/test.txt\" do \n     content 'This file was created by Chef Infra!'\n end"
-        path: /cookbooks/first_cookbook/recipes/default.rb
+    - name: Install samba packages
+      apt:  
+       name: ['samba-common','samba','samba-client', 'python-glade2', 'system-config-samba']
+       state: present
+     
+     - name: Ensure Samba is running and set to start on boot.
+       service: "name=smbd state=started enabled=yes"
 #eof
