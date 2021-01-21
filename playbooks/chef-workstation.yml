@@ -21,6 +21,5 @@
        name: ['samba-common','samba','samba-client', 'python-glade2', 'system-config-samba']
        state: present
      
-     - name: Ensure Samba is running and set to start on boot.
-       service: "name=smbd state=started enabled=yes"
-#eof
+    - name: Ensure Samba is running and set to start on boot.
+      service: "name=smbd state=started enabled=yes"
