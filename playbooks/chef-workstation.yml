@@ -5,6 +5,11 @@
   hosts: localhost
   vars:
   tasks:
+  
+    - name: Install Docker ce
+      apt:  
+       name: ['ruby']
+       state: present
 
     - name: install chef-workstation deb file
       apt:
