@@ -18,7 +18,7 @@
         
     - name: Install samba packages
       apt:  
-       name: ['samba-common','samba','samba-client', 'python-glade2', 'system-config-samba']
+       name: ['samba-common','samba','samba-client', 'system-config-samba']
        state: present
      
     - name: Ensure Samba is running and set to start on boot.
