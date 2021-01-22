@@ -12,6 +12,15 @@
     port_prometheus3 : 8000 
   tasks:
 
+
+    - name: Check docker is installed
+      command: dpkg-query -l docker
+      register: docker_check
+
+    - name: include docker install if not installed
+      include: tasks/docker_install.yml
+      when: docker_check.stdout.find('no packages found') != -1
+      
     - name: log in to dockerhub
       community.docker.docker_login:
         state: present
