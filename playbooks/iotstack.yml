@@ -25,14 +25,21 @@
         - "influxdb"
         
         
+    - name: Create a directory /share/data if it does not exist
+      ansible.builtin.file:
+        path: /share/data
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup
+        
     - name: Create a directory /share/data/hassio if it does not exist
       ansible.builtin.file:
         path: /share/data/hassio
         state: directory
         mode: '0755'
         owner: nobody
-        group: nogroup
-        
+        group: nogroup       
        
     - name: Create homeassistant container
       docker_container:
