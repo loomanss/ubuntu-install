@@ -26,7 +26,7 @@
     
     - name: Update hosts
       lineinfile:
-        path: /etc/smb.conf
+        path: /etc/samba/smb.conf
         state: present
         line: "{{ item }}"
       with_items:
