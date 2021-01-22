@@ -42,7 +42,7 @@ ansible-galaxy collection install community.docker
 echo 
 echo download playbook repo
 echo -------------------------------------------------------------------------
-sudo mkdir /share/github
+sudo mkdir -p /share/github
 cd /share/github
 #sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
 sudo git clone https://github.com/loomanss/ubuntu-install.git
