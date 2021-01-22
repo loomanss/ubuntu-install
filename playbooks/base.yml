@@ -4,13 +4,14 @@
   hosts: localhost
   tasks:
   
-    - name: Check docker is installed
-      command: dpkg-query -l docker
-      register: docker_check
+    - name: "Check if NGINX is installed"
+      package_facts:
+      manager: "auto"
+  
 
     - name: include docker install if not installed
       include: tasks/docker_install.yml
-      when: docker_check.stdout.find('no packages found') != 1
+      when: "'docker' not in ansible_facts.packages"
 
     - name: Show facts available on the system
       ansible.builtin.debug:
