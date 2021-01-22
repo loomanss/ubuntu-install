@@ -14,7 +14,7 @@
     
     - name: Create a Samba-share folder
       include: tasks/sambashare.yml
-      when: "'samba' not in ansible_facts.packages"
+      when: "'samba-common' not in ansible_facts.packages"
        
     - name: include docker install if not installed
       include: tasks/docker_install.yml
