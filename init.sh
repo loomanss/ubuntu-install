@@ -2,6 +2,7 @@
 # install ssh server
 echo update & upgrade
 echo -------------------------------------------------------------------------
+sudo -i
 sudo apt update
 sudo apt upgrade -y
 sudo ufw allow ssh 
@@ -41,8 +42,8 @@ ansible-galaxy collection install community.docker
 echo 
 echo download playbook repo
 echo -------------------------------------------------------------------------
-sudo mkdir /github/
-cd /github/
+sudo mkdir /share/github
+cd /share/github
 #sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
 sudo git clone https://github.com/loomanss/ubuntu-install.git
-cd /ubuntu-install/playbooks/
+cd /share/github/ubuntu-install/playbooks/
