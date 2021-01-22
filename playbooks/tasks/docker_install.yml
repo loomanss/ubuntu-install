@@ -1,40 +1,40 @@
 ---
-    - name: Docker: Update apt cache
+    - name: Docker - Update apt cache
       apt: update_cache=yes cache_valid_time=3600
 
     #- name: Upgrade all apt packages
     #  apt: upgrade=dist
  
-    - name:  Docker: Install aptitude using apt
+    - name:  Docker - Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
       
-    - name:  Docker: Install dependencies
+    - name:  Docker - Install dependencies
       apt:  
        name: ['apt-transport-https','ca-certificates','curl','software-properties-common','gnupg-agent','apt-transport-https', 'python3-pip', 'virtualenv', 'python3-setuptools']
        state: present
        
-    - name: Docker: Import a key from a Docker APT repository
+    - name: Docker - Import a key from a Docker APT repository
       ansible.builtin.apt_key:
         url: https://download.docker.com/linux/ubuntu/gpg
         state: present
       
-    - name: Docker: Add Docker APT repository
+    - name: Docker - Add Docker APT repository
       apt_repository: repo='deb    https://download.docker.com/linux/ubuntu focal stable' state=present update_cache=no
  
-    - name: Docker: Update apt cache
+    - name: Docker - Update apt cache
       # apt: update_cache=yes cache_valid_time=3600
       command: apt update
     
-    - name: Docker: Install Docker Module for Python
+    - name: Docker - Install Docker Module for Python
       pip:
         name: docker
     
-    - name: Docker:  Install Docker ce
+    - name: Docker -  Install Docker ce
       apt:  
        name: ['docker-ce','docker-ce-cli ','containerd.io']
        state: present
 
-    - name: Docker:  Install docker-compose and prerequisites for docker-compose
+    - name: Docker -  Install docker-compose and prerequisites for docker-compose
       apt:
         name: ['python3-pip', 'python3-setuptools', 'virtualenv','docker-compose']
         state: present
