@@ -37,3 +37,8 @@
           - 'read only = no'
           - 'force user = nobody'
 
+    - name: restart smbd
+      service:
+        name: smbd
+        state: restarted
+      become: true
