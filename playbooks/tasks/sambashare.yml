@@ -29,15 +29,15 @@
         line: "{{ item }}"
     with_items:
           - '[share]'
-          - 'path = /share'
-          - 'writable = yes'
-          - 'browsable = yes'
-          - 'read only = no'
-          - 'force user = nobody'
-          - 'force create mode = 0777'
-          - 'force directory mode = 0777'
-          - 'guest only = yes'
-          - 'guest ok = yes'
+          - '    path = /share'
+          - '    writable = yes'
+          - '    browsable = yes'
+          - '    'read only = no'
+          - '    force user = nobody'
+          - '    force create mode = 0777'
+          - '    force directory mode = 0777'
+          - '    guest only = yes'
+          - '    guest ok = yes'
 
   - name: set read-write recurse
     command: chmod 0775 /share/ -R
