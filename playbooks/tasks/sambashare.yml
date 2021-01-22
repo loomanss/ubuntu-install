@@ -50,3 +50,4 @@
       name: smbd
       state: restarted
       enabled: yes
+    become: true
