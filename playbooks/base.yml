@@ -1,0 +1,9 @@
+# cat >> base.yml << #eof
+---
+- name: base ansible playbook
+  hosts: localhost
+  vars:
+  tasks:
+  
+    - name: Create a Samba-share folder
+      include: tasks/sambashare.yml
