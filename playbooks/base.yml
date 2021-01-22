@@ -3,9 +3,6 @@
 - name: base ansible playbook
   hosts: localhost
   tasks:
-  
-    - name: Create a Samba-share folder
-      include: tasks/sambashare.yml
       
     - name: Gather the packager facts
       package_facts:
@@ -14,15 +11,15 @@
     - name: Print the package facts
       debug:
         var: ansible_facts.packages
-        
+    
+    - name: Create a Samba-share folder
+      include: tasks/sambashare.yml
+      when: "'samba' not in ansible_facts.packages"
+       
     - name: include docker install if not installed
       include: tasks/docker_install.yml
       when: "'docker' not in ansible_facts.packages"
-
-    - name: Show facts available on the system
-      ansible.builtin.debug:
-        var: ansible_facts
-      
+     
     - name: include docker install if not installed
       include: tasks/docker_pull.yml
       with_items:
