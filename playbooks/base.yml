@@ -6,7 +6,7 @@
   
     - name: "Check if NGINX is installed"
       package_facts:
-      manager: "auto"
+        manager: "auto"
   
 
     - name: include docker install if not installed
