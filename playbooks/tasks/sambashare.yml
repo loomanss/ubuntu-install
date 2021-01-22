@@ -48,5 +48,5 @@
   - name: Ensure Samba is running and set to start on boot.
     service: 
       name: smbd
-      restarted: yes
+      restarted: force
       enabled: yes
