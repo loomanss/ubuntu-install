@@ -7,9 +7,8 @@
     - name: Create a Samba-share folder
       include: tasks/sambashare.yml
       
-    - name: "Check if docker is installed"
+    - name: Gather the packager facts
       package_facts:
-        manager: "auto"
   
     - name: include docker install if not installed
       include: tasks/docker_install.yml
