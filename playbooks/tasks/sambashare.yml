@@ -1,5 +1,14 @@
 
 ---
+  - name: ufw configure samba
+    command: ufw allow {{ item }}
+    with_items:
+      - 137
+      - 138
+      - 139
+      - 445
+      - 8182
+    
   - name: Create The directory share if it does not exist
     ansible.builtin.file:
         path: /share
