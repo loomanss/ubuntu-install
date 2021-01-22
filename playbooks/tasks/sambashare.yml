@@ -1,13 +1,5 @@
 
 ---
-    - name: ufw service on
-      service:
-        name: ufw
-        state: restarted
-      become: true
-      
-    - name: ufw configure samba
-      command: ufw allow Samba
     
     - name: Create a directory /share/cookbooks if it does not exist
       ansible.builtin.file:
@@ -49,6 +41,15 @@
     - name: set read-write recurse
       command: chown nobody:nogroup /share/ -R
      
+    - name: ufw service on
+      service:
+        name: ufw
+        state: restarted
+      become: true
+      
+    - name: ufw configure samba
+      command: ufw allow Samba
+      
     - name: restart smbd
       service:
         name: smbd
