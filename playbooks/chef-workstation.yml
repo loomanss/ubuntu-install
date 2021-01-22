@@ -52,9 +52,10 @@
           
     - name: set read-write recurse
       command: chmod 0775 /share/ -R
-           
-  
-   
+ 
+    - name: set read-write recurse
+      command: chown nobody:nogroup share/ -R
+     
     - name: restart smbd
       service:
         name: smbd
