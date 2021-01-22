@@ -1,6 +1,6 @@
 # cat >> iotstack.yml << #eof
 ---
-- name: install mysql docker image
+- name: installation  of IOT-Stack
   hosts: localhost
   tasks:
     - name: Gather the packager facts
@@ -18,8 +18,8 @@
     - name: include docker install if not installed
       include: tasks/docker_pull.yml
       with_items:
-        - "mysql"
         - "portainer/portainer"
+        - "homeassistant/home-assistant"
         - "nodered/node-red"
         - "grafana/grafana"
         - "influxdb"
