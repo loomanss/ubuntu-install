@@ -35,7 +35,7 @@
       command: chmod 0775 /share/ -R
  
     - name: set ownership recurse
-      command: chown nobody:nogroup share/ -R
+      command: chown nobody:nogroup /share/ -R
     
     - name: Ensure Samba is running and set to start on boot.
       service: "name=smbd state=restarted enabled=yes"
