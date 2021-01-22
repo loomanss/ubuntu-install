@@ -46,7 +46,7 @@
        name: hassio
        image: homeassistant/home-assistant
        volumes:
-          -v /share/data/hassio:/config
+          - /share/data/hassio:/config
        network_mode: host
        exposed_ports:
          - 8123
