@@ -11,9 +11,9 @@
       package_facts:
         manager: apt
     
-    - name: Show package_facts available on the system
-      ansible.builtin.debug:
-        var: package_facts
+    - name: Print the package facts
+      debug:
+        var: ansible_facts.packages
         
     - name: include docker install if not installed
       include: tasks/docker_install.yml
