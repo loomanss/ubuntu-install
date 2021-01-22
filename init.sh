@@ -1,6 +1,6 @@
 #!/bin/bash
 # install ssh server
-echo update & upgrade
+echo update and upgrade
 echo -------------------------------------------------------------------------
 sudo -i
 sudo apt update
