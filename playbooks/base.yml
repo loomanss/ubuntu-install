@@ -9,7 +9,12 @@
       
     - name: Gather the packager facts
       package_facts:
-  
+        manager: apt
+    
+    - name: Show package_facts available on the system
+      ansible.builtin.debug:
+        var: package_facts
+        
     - name: include docker install if not installed
       include: tasks/docker_install.yml
       when: "'docker' not in ansible_facts.packages"
@@ -27,7 +32,5 @@
         - "grafana/grafana"
         - "influxdb"
         
-    - name: Show package_facts available on the system
-      ansible.builtin.debug:
-        var: package_facts
+
    
