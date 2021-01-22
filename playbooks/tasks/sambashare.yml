@@ -55,3 +55,8 @@
         name: smbd
         state: restarted
       become: true
+     
+    - name: show path to samba server 
+      ansible.builtin.debug:
+        msg:
+          -  'share path is \\{{ ansible_default_ipv4.address }}\share\'
