@@ -4,7 +4,7 @@
   hosts: localhost
   tasks:
   
-    - name: "Check if NGINX is installed"
+    - name: "Check if docker is installed"
       package_facts:
         manager: "auto"
   
@@ -25,3 +25,7 @@
         - "nodered/node-red"
         - "grafana/grafana"
         - "influxdb"
+        
+    - name: Show package_facts available on the system
+      ansible.builtin.debug:
+        var: package_facts
