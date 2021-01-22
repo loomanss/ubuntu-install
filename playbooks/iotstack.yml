@@ -3,57 +3,33 @@
 - name: install mysql docker image
   hosts: localhost
   tasks:
-
-
-    - name: Check docker is installed
-      command: dpkg-query -l docker
-      register: docker_check
-
+    - name: Gather the packager facts
+      package_facts:
+        manager: apt
+        
+    - name: Create a Samba-share folder if not installed
+      include: tasks/sambashare.yml
+      when: "'samba-common' not in ansible_facts.packages"
+       
     - name: include docker install if not installed
       include: tasks/docker_install.yml
-      when: docker_check.stdout.find('no packages found') != -1
-      
-    - name: log in to dockerhub
-      community.docker.docker_login:
-        state: present
-        registry_url: "https://index.docker.io/v1/" # dockerhub
-        username: "{{ user }}"
-        password: "{{ pass }}"
-
-    - name: Pull homeassistant image
-      community.docker.docker_image:
-       name: "homeassistant/home-assistant:stable"
-       source: pull
-       state: present
-   
-    - name: Pull portainer image
-      community.docker.docker_image:
-       name: "portainer/portainer"
-       source: pull
-       state: present
-  
-    - name: Pull nodered/node-red image
-      community.docker.docker_image:
-       name: "nodered/node-red"
-       source: pull
-       state: present
-       
-    - name: Pull grafana image
-      community.docker.docker_image:
-       name: "grafana/grafana"
-       source: pull
-       state: present
-
-    - name: Pull influxdb image
-      community.docker.docker_image:
-       name: "influxdb"
-       source: pull
-       state: present
+      when: "'docker-ce' not in ansible_facts.packages"
+     
+    - name: include docker install if not installed
+      include: tasks/docker_pull.yml
+      with_items:
+        - "mysql"
+        - "portainer/portainer"
+        - "nodered/node-red"
+        - "grafana/grafana"
+        - "influxdb"
        
     - name: Create homeassistant container
       docker_container:
        name: hassio
        image: homeassistant/home-assistant
+       volumes:
+          -v /share/data/hassio:/config
        network_mode: host
        exposed_ports:
          - 8123
