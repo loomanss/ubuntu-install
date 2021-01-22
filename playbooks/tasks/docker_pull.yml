@@ -1,19 +1,25 @@
 ---
-   - name: Check docker is installed
+   - name: Check  '{{ item }}' docker-image is installed
      command: docker images
      register: docker_images
+     
+   - block:
+      - name: "end play if nothing to upgrade"
+        debug:
+          msg: "nothing to upgrade, ending play"
 
-   - name: log in to dockerhub
+      - meta: end_play
+     when: docker_images.stdout.find('{{ item }}') != -1
+
+   - name: log in to dockerhub for installing '{{ item }}' docker-image
      community.docker.docker_login:
         state: present
         registry_url: "https://index.docker.io/v1/" # dockerhub
         username: "{{ user }}"
         password: "{{ pass }}"
-     when: docker_images.stdout.find('{{ item }}') != 1
 
-   - name: Pull image from dockerhub
+   - name: Pull '{{ item }}' docker-image from dockerhub
      community.docker.docker_image:
        name: "{{ item }}"
        source: pull
        state: present
-     when: docker_images.stdout.find('{{ item }}') != 1
