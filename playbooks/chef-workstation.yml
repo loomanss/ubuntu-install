@@ -23,3 +23,18 @@
      
     - name: Ensure Samba is running and set to start on boot.
       service: "name=smbd state=started enabled=yes"
+      
+    - name: add user for smb access
+      command: sudo smbpasswd -a "{{ user }}"
+
+    - name: Update hosts
+      lineinfile:
+        path: /etc/hosts
+        state: present
+        line: "{{ item }}"
+        with_items:
+          - '[cookbooks]'
+          - 'path = /cookbooks'
+          - 'valid users = {{ user }}'
+          - 'read only = no'
+
