@@ -1,5 +1,11 @@
 
 ---
+    - name: ufw service on
+      service:
+        name: ufw
+        state: restarted
+      become: true
+      
     - name: ufw configure samba
       command: ufw allow Samba
     
