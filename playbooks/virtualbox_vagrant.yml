@@ -47,7 +47,7 @@
    
     - name: Gather the packager facts
       command: VBoxManage list extpacks
-        register: Vbox_extpacks
+      register: Vbox_extpacks
 
     - block:
       - name: Download Extention Pack
