@@ -58,7 +58,7 @@
       - name: install extentionpack
         command: VBoxManage extpack install /images/Oracle_VM_VirtualBox_Extension_Pack-6.1.16-140961.vbox-extpack --accept-license=33d7284dc4a0ece381196fda3cfe2ed0e1e8e7ed7f27b9a9ebc4ee22e24bd23c         
       
-      when: Vbox_extpacks.stdout.find('virtualbox') != -1
+      when: Vbox_extpacks.stdout.find('virtualbox') != 1
 
       
     - name: Extention pack cleanup
