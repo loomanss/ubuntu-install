@@ -15,3 +15,8 @@ curl -s https://raw.githubusercontent.com/loomanss/ubuntu-install/main/init.sh |
 wget -q http://mywebsite.com/myscript.txt -O 
 
 ```
+
+
+
+# run the init script
+get -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/rasp-init.sh | bash
