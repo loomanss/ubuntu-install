@@ -1,0 +1,47 @@
+# cat >> raspbiancast.yml.yml << #eof
+---
+- name: base ansible playbook
+  hosts: localhost
+  tasks:
+      
+    - name: Gather the packager facts
+      package_facts:
+        manager: apt
+    
+    - name: Print the package facts
+      debug:
+        var: ansible_facts.packages
+    
+    - name: Create a Samba-share folder
+      include: tasks/sambashare.yml
+      when: "'samba-common' not in ansible_facts.packages"
+       
+   #steps based on https://thepi.io/how-to-use-your-raspberry-pi-as-a-chromecast-alternative/    
+   # https://www.makeuseof.com/tag/raspberry-pi-chromecast/   
+   
+   - name: install dependencies
+     apt:  
+       name: ['libjpeg9-dev','libpng12-dev','omxplayer']
+       state: present
+      when: "'omxplayer' not in ansible_facts.packages"
+   
+   
+   - name: Clone omxiv git directory
+     git:
+       repo: https://github.com/HaarigerHarald/omxiv
+       dest: /share/github/omxiv
+    
+   - name: omxiv - install 
+     command: cd omxiv
+ 
+   - name: omxiv - make ilclient
+     command: make ilclient  
+      
+   - name: omxiv - make
+     command: make   
+      
+   - name: omxiv - make install
+     command: make install
+     
+
+   
