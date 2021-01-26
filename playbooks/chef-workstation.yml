@@ -6,6 +6,10 @@
   vars:
   tasks:
   
+    - name: Update apt cache
+      # apt: update_cache=yes cache_valid_time=3600
+      command: apt update
+  
     - name: Install ruby
       apt:  
        name: ['ruby']
