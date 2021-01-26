@@ -13,6 +13,8 @@ echo -------------------------------------------------------------------------
 sudo apt install software-properties-common git openssh-server  -y
 echo
 echo
-echo extend lifetime os SD card by disabling swap files
+echo extend lifetime os SD card by disabling and removing swap files 
 echo -------------------------------------------------------------------------
 sudo systemctl disable dphys-swapfile.service
+sudo dphys-swapfile swapoff 
+sudo dphys-swapfile uninstall
