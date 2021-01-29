@@ -12,7 +12,7 @@
   
     - name: Gather the package facts
       package_facts:
-        manager: auto
+        manager:  apt
         
     - name: Import a key from a checkmk APT repository
       ansible.builtin.apt_key:
