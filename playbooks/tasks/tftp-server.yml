@@ -25,10 +25,10 @@
           - 'TFTP_OPTIONS="--secure -v --create"'
 
 
-   - name: ufw service on
+   - name: ufw service enabled 
      service:
         name: ufw
-        state: restarted
+        state: enabled 
      become: true
 
    - name: ufw configure tftp
@@ -38,4 +38,10 @@
      service:
        name: tftpd-hpa
        state: restarted
+     become: true
+     
+   - name: ufw service restarted
+     service:
+        name: ufw
+        state: restarted
      become: true
