@@ -67,3 +67,6 @@
         port: '443'
         proto: tcp
   
+    - name: Print the package facts
+      debug:
+        var: ansible_facts.packages
