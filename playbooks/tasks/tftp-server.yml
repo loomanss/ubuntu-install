@@ -1,0 +1,41 @@
+ --
+   #source :https://gist.github.com/joshschmelzle/6aa786e5da37eea77b4bf0fcf85c3881
+   - name: install tftp server
+     apt:
+       name: ['tftpd-hpa]
+       state: present
+       
+   - name: Create a directory /data/tftp if it does not exist
+     ansible.builtin.file:
+        path: /data/tftp
+        state: directory
+        mode: '0777'
+        owner: nobody
+        group: nogroup    
+
+    - name: update tftpd-hpa
+      lineinfile:
+        path: /etc/default/tftpd-hpa
+        state: present
+        line: "{{ item }}"
+      with_items:
+          - 'TFTP_USERNAME="tftp"'
+          - 'TFTP_DIRECTORY="/data/tftp"'
+          - 'TFTP_ADDRESS=":69"'
+          - 'TFTP_OPTIONS="--secure -v --create"'
+
+          
+   - name: ufw service on
+      service:
+        name: ufw
+        state: restarted
+      become: true
+      
+    - name: ufw configure tftp
+      command: ufw allow tftp
+      
+    - name: restart smbd
+      service:
+        name: tftp
+        state: restarted
+      become: true
