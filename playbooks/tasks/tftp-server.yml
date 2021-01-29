@@ -45,3 +45,28 @@
         name: ufw
         state: restarted
      become: true
+
+  - name: Creates directory /images
+    file:
+       path: /images
+       state: directory
+         
+  - name: Download ubuntu server image
+    get_url:
+       url: https://releases.ubuntu.com/20.04/ubuntu-20.04.1-live-server-amd64.iso
+       dest: /data/tftp/boot/ubuntu-20.04.1-live-server-amd64.iso
+
+  - name: Extract kernel and ramdisk from a LiveCD
+    community.general.iso_extract:
+      image: /images/ubuntu-20.04.1-live-server-amd64.iso
+      dest: /data/tftp/boot
+      files:
+      - isolinux/kernel
+      - isolinux/initrd.cgz
+      - casper/initrd
+      - casper/vmlinuz
+ 
+ - name: Download Grub image 
+   get_url:
+       url: http://archive.ubuntu.com/ubuntu/dists/focal/main/uefi/grub2-amd64/current/grubnetx64.efi.signed
+       dest: /data/tftp/boot/pxelinux.0
