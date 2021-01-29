@@ -18,3 +18,9 @@
 
    - name: Install bottle python package
      command: ansible -m setup --tree /inventory/ localhost
+     
+   - name: save package-list
+     copy:
+      content: "{{ ansible_facts.packages }}"
+      dest: "/inventory/packages.json"
+
