@@ -1,6 +1,7 @@
 ---
 - name: This fixes broadcom driver issues
   hosts: localhost
+  gather_facts: False
   tasks:
     - name: install dev packages for statd build
       apt:  
