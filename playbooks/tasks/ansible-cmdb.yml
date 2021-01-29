@@ -1,8 +1,13 @@
 ---
-   - name: Install bottle python package
+   - name: check if pip3 is present in apt-repo
+     apt:
+       name: ['python3-pip','python3']
+       state: present
+       
+   - name: Install ansible-cmdb python package
      pip:
        name: ansible-cmdb
-   
+
    - name: Create a directory /out if it does not exist
      ansible.builtin.file:
         path: /out
@@ -12,5 +17,4 @@
         group: nogroup
 
    - name: Install bottle python package
-     command:ansible -m setup --tree out/ all
-
+     command: ansible -m setup --tree out/ all
