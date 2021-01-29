@@ -16,7 +16,7 @@
         owner: nobody
         group: nogroup
 
-   - name: Install bottle python package
+   - name: list inventory from localhost
      command: ansible -m setup --tree /inventory/ localhost
      
    - name: save package-list
