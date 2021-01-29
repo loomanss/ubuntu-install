@@ -1,9 +1,7 @@
-
----
-    
-    - name: Create a directory /share/cookbooks if it does not exist
+---   
+    - name: Create a directory /share if it does not exist
       ansible.builtin.file:
-        path: /share/cookbooks
+        path: /share
         state: directory
         mode: '0755'
         owner: nobody
