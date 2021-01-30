@@ -19,8 +19,12 @@ git config --global user.name "$2"
 
 
 
-
-
+echo
+echo  disable ipv6 until reboot to speed up :
+echo    - apt add repo
+echo    - ansible-galaxy
+echo -------------------------------------------------------------------------
+sudo sysctl net.ipv6.conf.all.disable_ipv6=1
 echo 
 echo
 echo  add repo key
