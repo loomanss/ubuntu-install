@@ -1,8 +1,5 @@
 #!/bin/bash
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
+
 # install ssh server
 echo update and upgrade
 echo -------------------------------------------------------------------------
@@ -20,6 +17,20 @@ sudo apt install software-properties-common git openssh-server  -y
 git config --global user.email "$1"
 git config --global user.name "$2"
 
+
+
+
+
+echo 
+echo
+echo  add repo key
+echo -------------------------------------------------------------------------
+sudo apt-add-repository ppa:ansible/ansible -y
+echo
+echo
+echo  updating repo
+echo -------------------------------------------------------------------------
+sudo apt-get update
 
 echo
 echo
