@@ -11,8 +11,8 @@ echo
 echo
 echo installing prerequisites
 echo -------------------------------------------------------------------------
-sudo apt install software-properties-common git openssh-server python-argcomplete python3-pip  -y
-sudo activate-global-python-argcomplete
+sudo apt install software-properties-common git openssh-server -y
+
 
 
 git config --global user.email "$1"
@@ -52,6 +52,16 @@ echo
 echo INSTALL ansible galaxy community.docker 
 echo -------------------------------------------------------------------------
 ansible-galaxy collection install community.docker
+
+
+
+echo
+echo
+echo INSTALL python argcomplete
+echo -------------------------------------------------------------------------
+sudo apt install python-argcomplete python3-pip  -y
+sudo activate-global-python-argcomplete
+
 
 echo
 echo
