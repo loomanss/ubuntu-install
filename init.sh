@@ -60,7 +60,7 @@ echo
 echo INSTALL python argcomplete
 echo -------------------------------------------------------------------------
 sudo apt install  python3-argcomplete  python3-pip  -y
-sudo activate-global-python-argcomplete
+sudo activate-global-python-argcomplete3
 
 
 echo
