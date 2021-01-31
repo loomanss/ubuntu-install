@@ -11,7 +11,8 @@ echo
 echo
 echo installing prerequisites
 echo -------------------------------------------------------------------------
-sudo apt install software-properties-common git openssh-server  -y
+sudo apt install software-properties-common git openssh-server python-argcomplete python3-pip  -y
+sudo activate-global-python-argcomplete
 
 
 git config --global user.email "$1"
