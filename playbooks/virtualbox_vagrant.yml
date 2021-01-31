@@ -64,6 +64,10 @@
     - name: Extention pack cleanup
       command: VBoxManage extpack cleanup
 
+    - name: Download Guestimage iso
+      get_url:
+       url: https://raw.githubusercontent.com/loomanss/vboxmanage-bash-completion/master/VBoxManage
+       dest: /usr/share/bash-completion/completions/VBoxManage
 
 
 
