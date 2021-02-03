@@ -11,18 +11,19 @@ echo
 echo
 echo installing prerequisites
 echo -------------------------------------------------------------------------
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt-get install python3.7 virtualenv -y
-sudo apt install python3 virtualenv software-properties-common git  python-setuptools openssh-server -y
-sudo apt install python3-argcomplete  python3-pip   -y
-sudo activate-global-python-argcomplete3
-sudo python3 -m pip install jinja2 
-sudo python3 -m pip install pyyaml
-sudo python3 -m pip install paramiko
+#sudo add-apt-repository ppa:deadsnakes/ppa
+#sudo apt-get install python3.7 virtualenv -y
+sudo apt install software-properties-common git openssh-server -y
+#sudo apt install python3 virtualenv python-setuptools 
+s#udo apt install python3-argcomplete  python3-pip   -y
+#sudo activate-global-python-argcomplete3
+#sudo python3 -m pip install jinja2 
+#sudo python3 -m pip install pyyaml
+#sudo python3 -m pip install paramiko
 
 
-git config --global user.email "$1"
-git config --global user.name "$2"
+#git config --global user.email "$1"
+#git config --global user.name "$2"
 
 
 
