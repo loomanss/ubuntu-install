@@ -30,5 +30,5 @@
         path:  ~/.bashrc
         state: present
         line: "{{ item }}"
-      with_items:
+    with_items:
           - 'source <(cod init \$\$ bash)'
