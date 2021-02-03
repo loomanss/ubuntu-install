@@ -11,6 +11,8 @@ echo
 echo
 echo installing prerequisites
 echo -------------------------------------------------------------------------
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt-get install python3.9
 sudo apt install python3 software-properties-common git  python-setuptools openssh-server -y
 sudo apt install python3-argcomplete  python3-pip   -y
 sudo activate-global-python-argcomplete3
