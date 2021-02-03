@@ -11,7 +11,11 @@
     - name: Print the package facts
       debug:
         var: ansible_facts.packages
-    
+        
+    - name: cod install
+      include: tasks/cod.yml
+
+
     - name: Create a Samba-share folder
       include: tasks/sambashare.yml
       when: "'samba-common' not in ansible_facts.packages"
