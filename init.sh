@@ -11,8 +11,12 @@ echo
 echo
 echo installing prerequisites
 echo -------------------------------------------------------------------------
-sudo apt install software-properties-common git openssh-server -y
-
+sudo apt install python3 software-properties-common git  python-setuptools openssh-server -y
+sudo apt install python3-argcomplete  python3-pip   -y
+sudo activate-global-python-argcomplete3
+sudo python3 -m pip install jinja2 
+sudo python3 -m pip install pyyaml
+sudo python3 -m pip install paramiko
 
 
 git config --global user.email "$1"
@@ -54,13 +58,6 @@ echo -------------------------------------------------------------------------
 ansible-galaxy collection install community.docker
 
 
-
-echo
-echo
-echo INSTALL python argcomplete
-echo -------------------------------------------------------------------------
-sudo apt install  python3-argcomplete  python3-pip  -y
-sudo activate-global-python-argcomplete3
 
 
 echo
