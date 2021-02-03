@@ -5,14 +5,14 @@
        url: https://github.com/dim-an/cod/releases/download/v0.0.0/cod-Linux.tgz
        dest: /tmp/cod-Linux.tgz
        
-   - name unpack
-     ansible.builtin.unarchive:
+  - name: unpack
+    ansible.builtin.unarchive:
        src: /tmp/cod-Linux.tgz
        dest: /tmp/cod
    
-   - name: add 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
-     command: 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
+  - name: add 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
+    command: 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
 
-   - name: add 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
-     command: cp/tmp/cod/cod /usr/bin/.
+  - name: add 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
+    command: cp/tmp/cod/cod /usr/bin/.
      
