@@ -13,6 +13,6 @@
   - name: add 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
     command: 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
 
-  - name: add 'echo "source <(cod init $$ bash)" |tee -a ~/.bashrc'
-    command: cp/tmp/cod/cod /usr/bin/.
+  - name: copy cod binary to usr/bin
+    command: cp /tmp/cod/cod-Linux/cod /usr/bin/.
      
