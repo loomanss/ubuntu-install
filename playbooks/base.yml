@@ -12,26 +12,10 @@
       debug:
         var: ansible_facts.packages
         
-    - name: cod install
+    - name: install cod binary
       include: tasks/cod.yml
 
 
-    - name: Create a Samba-share folder
-      include: tasks/sambashare.yml
-      when: "'samba-common' not in ansible_facts.packages"
-       
-    - name: include docker install if not installed
-      include: tasks/docker_install.yml
-      when: "'docker-ce' not in ansible_facts.packages"
-     
-    - name: include docker install if not installed
-      include: tasks/docker_pull.yml
-      with_items:
-        - "mysql"
-        - "portainer/portainer"
-        - "nodered/node-red"
-        - "grafana/grafana"
-        - "influxdb"
         
 
    
