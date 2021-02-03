@@ -20,8 +20,15 @@
        dest: /tmp/cod
    
   - name: add 'echo "source <(cod init \$\$ bash)" |tee -a ~/.bashrc'
-    command: 'echo "source <(cod init \$\$ bash)" |tee -a ~/.bashrc'
+    command: 'echo "" |tee -a ~/.bashrc'
 
   - name: copy cod binary to usr/bin
     command: cp /tmp/cod/cod-Linux/cod /usr/bin/.
      
+  - name: Update hosts
+    lineinfile:
+        path:  ~/.bashrc
+        state: present
+        line: "{{ item }}"
+      with_items:
+          - 'source <(cod init \$\$ bash)'
