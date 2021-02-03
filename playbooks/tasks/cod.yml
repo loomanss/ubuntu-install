@@ -1,5 +1,6 @@
 ---
   # source: https://github.com/dim-an/cod
+  # https://www.linuxuprising.com/2020/02/cod-new-command-line-autocomplete.html
   - name: Download cod binary
     get_url:
        url: https://github.com/dim-an/cod/releases/download/v0.0.0/cod-Linux.tgz
