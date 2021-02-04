@@ -34,8 +34,8 @@
       include: tasks/sambashare.yml
 
 
-#    - name: installing bash-completion for chef commands
-#      get_url:
-#       url: https://raw.githubusercontent.com/loomanss/chef-bash-completion/master/chef-bash-completion
-#       dest: /usr/share/bash-completion/completions/chef
+    - name: installing bash-completion for chef commands
+      get_url:
+       url: https://raw.githubusercontent.com/loomanss/chef-bash-completion/master/chef-bash-completion
+       dest: /usr/share/bash-completion/completions/chef
 
