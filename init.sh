@@ -16,7 +16,7 @@ echo -------------------------------------------------------------------------
 sudo apt install software-properties-common git openssh-server -y
 #sudo apt install python3 virtualenv python-setuptools 
 sudo apt install python3-argcomplete  python3-pip   -y
-#sudo activate-global-python-argcomplete3
+sudo activate-global-python-argcomplete3
 #sudo python3 -m pip install jinja2 
 #sudo python3 -m pip install pyyaml
 #sudo python3 -m pip install paramiko
