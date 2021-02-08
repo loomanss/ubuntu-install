@@ -19,7 +19,7 @@
   - name: copy cod binary to usr/bin
     command: cp /tmp/cod-Linux/cod /usr/bin/.
      
-  - name: Update hosts
+  - name: Update bashrc
     lineinfile:
         path:  ~/.bashrc
         state: present
