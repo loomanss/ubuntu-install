@@ -33,6 +33,13 @@
     - name: Create a Samba-share folder
       include: tasks/sambashare.yml
 
+    - name: Update bashrc
+      lineinfile:
+        path:  ~/.bashrc
+        state: present
+        line: "{{ item }}"
+      with_items:
+          - 'eval "$(chef shell-init bash)"'
 
     - name: installing bash-completion for chef commands
       get_url:
