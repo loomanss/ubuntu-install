@@ -7,8 +7,8 @@
       community.docker.docker_login:
         state: present
         registry_url: "https://index.docker.io/v1/" # dockerhub
-        username: {{ user }}
-        password: {{ pass }}
+        username: "{{ user }}"
+        password: "{{ pass }}"
 
 
     - name: Pull the postgres:9.6.21 image
