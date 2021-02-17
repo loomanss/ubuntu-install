@@ -5,7 +5,7 @@
   
     - name: Install npm package
       apt:  
-       name: ['npm']
+       name: ['npm','mvn']
        state: present
        
        
