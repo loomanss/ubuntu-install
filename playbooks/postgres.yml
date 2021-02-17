@@ -2,16 +2,11 @@
 - name: install mysql docker image
   hosts: localhost
   tasks:
-    - name: log in to dockerhub
-      community.docker.docker_login:
-        state: present
-        registry_url: "https://index.docker.io/v1/" # dockerhub
-        username: "{{ user }}"
-        password: "{{ pass }}"
-
-
-    - name: Pull the postgres:9.6.21 image
-      community.docker.docker_image:
-       name: "postgres:9.6.21"
-       source: pull
-       state: present
+  
+  
+   - name: include docker install if not installed
+      include: tasks/docker_pull.yml
+      with_items:
+        - "portainer/portainer"
+        - "postgres:9.6.21"
+ 
