@@ -10,3 +10,50 @@
         - "portainer/portainer"
         - "postgres:9.6.21"
  
+ 
+ 
+     - name: Create a directory /share/data/postgres if it does not exist
+      ansible.builtin.file:
+        path: /share/data/postgres
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup    
+        
+        
+        
+   - name: Create postgres container
+     docker_container:
+      name: dbcontainer
+      image: postgress
+      volumes:
+          - /share/data/postgres
+      env:
+        POSTGRES_PASSWORD: "blurry-monday-TST"
+      network_mode: host
+      exposed_ports:
+         - 5432
+      state: started
+      restart: yes
+
+      
+   - name: Create portainer container
+     docker_container:
+      name: portainer
+      image: portainer/portainer
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock 
+          - portainer_data:/data portainer/portainer-ce 
+      network_mode: host
+      exposed_ports:
+         - 9000
+      state: started
+      restart: yes
+      
+      
+   - name: Allow port 9000
+     community.general.ufw:
+        rule: allow
+        port: 9000
+        proto: tcp
+#eof
