@@ -16,9 +16,12 @@
         mode: '0755'
 
 
-    - name: installing openapi-generator-cli
-      get_url:
-       url: https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh
-       dest: ~/bin/openapitools/
+    #- name: installing openapi-generator-cli
+    #  get_url:
+    #   url: 
+    #   dest: ~/bin/openapitools/
+    #   mode: '0755'
        
        
+    - name: 'installing openapi-generator-cli'
+      command: 'wget -qO - https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh | bash'
