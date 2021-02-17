@@ -2,7 +2,6 @@
 - name: install mysql docker image
   hosts: localhost
   tasks:
-
     - name: log in to dockerhub
       community.docker.docker_login:
         state: present
