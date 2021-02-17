@@ -12,8 +12,8 @@
  
  
  
-     - name: Create a directory /share/data/postgres if it does not exist
-      ansible.builtin.file:
+   - name: Create a directory /share/data/postgres if it does not exist
+     ansible.builtin.file:
         path: /share/data/postgres
         state: directory
         mode: '0755'
