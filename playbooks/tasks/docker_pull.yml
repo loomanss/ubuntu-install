@@ -16,5 +16,5 @@
             name: "{{ item }}"
             source: pull
             state: present
-     when: docker_images.stdout.find('{{ item }}') != -1
+     when: docker_images.stdout.find('{{ item }}') == -1
 
