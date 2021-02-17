@@ -25,7 +25,7 @@
    - name: Create postgres container
      docker_container:
       name: dbcontainer
-      image: postgress
+      image: postgres:9.6.21
       volumes:
           - /share/data/postgres
       env:
