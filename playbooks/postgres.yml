@@ -5,8 +5,8 @@
   
   
    - name: include docker install if not installed
-      include: tasks/docker_pull.yml
-      with_items:
+     include: tasks/docker_pull.yml
+     with_items:
         - "portainer/portainer"
         - "postgres:9.6.21"
  
