@@ -2,6 +2,11 @@
 ---
 - name: Prometheus installation playbook
   hosts: localhost
+  
+  
+  # ansible-playbook prometheus.yml --extra-vars "skipinstall=True"
+  
+  
   vars:
     # GUI's
     port_prometheus1 : 9090 
@@ -12,20 +17,30 @@
     port_prometheus3 : 8000 
   tasks:
 
-    - name: Check docker is installed
-      command: dpkg-query -l docker
-      register: docker_check
 
-    - name: include docker install if not installed
-      include: tasks/docker_install.yml
-      when: docker_check.stdout.find('no packages found') != -1
+     
+     
+    - name: Install, configure, docker containers 
+      block:
+       
+       - name: Check docker is installed
+         command: dpkg-query -l docker
+         register: docker_check
 
-    - name: include docker images if not installed
-      include: tasks/docker_pull.yml
-      with_items:
-        - "portainer/portainer"
-        - "grafana/grafana"
-        - "prom/prometheus"
+       - name: include docker install if not installed
+         include: tasks/docker_install.yml
+         when: docker_check.stdout.find('no packages found') != -1
+
+       - name: include docker images if not installed
+         include: tasks/docker_pull.yml
+         with_items:
+          - "portainer/portainer"
+          - "grafana/grafana"
+          - "prom/prometheus"
+      when: skipinstall == False
+      
+      
+
        
     - name: Create prometheus container
       docker_container:
