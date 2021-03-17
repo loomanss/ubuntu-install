@@ -1,0 +1,67 @@
+# cat >> prometheus-exporter.yml << #eof
+---
+- name: Prometheus exporter for ubuntu playbook
+  hosts: localhost
+  vars:
+
+  tasks:
+
+    - name: Download https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
+      get_url:
+       url: "https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz"
+       dest: "/tmp/node_exporter.tar.gz"
+
+
+    - name: 'untar'
+      command: 'tar -xf /tmp/node_exporter.tar.gz'
+
+    - name: 'move to usr/local/bin'
+      command: 'sudo mv node_exporter-1.0.1.linux-amd64/node_exporter /usr/local/bin'
+
+#    - name: 'remove'
+#      command: 'rm /tmp/node_exporter.tar.gz'
+   
+    - name: Add the user 'johnd' with a specific uid and a primary group of 'admin'
+      ansible.builtin.user:
+        name: node_exporter
+        comment:  Prometheus node exporter
+        uid: 1040
+        #group: admin
+
+    - name: Creating an empty file etc/systemd/system/node_exporter.service
+      file:
+        path: "/etc/systemd/system/node_exporter.service"
+        state: touch
+      
+          
+    - name: update node_exporter.service
+      lineinfile:
+        path: /etc/systemd/system/node_exporter.service
+        state: present
+        line: "{{ item }}"
+      with_items:
+          - '[Unit]'
+          - 'Description=Node Exporter'
+          - 'After=network.target'
+          - '[Service]'
+          - 'User=node_exporter'
+          - 'Group=node_exporter'
+          - 'Type=simple'
+          - 'ExecStart=/usr/local/bin/node_exporter'
+          - '[Install]'
+          - 'WantedBy=multi-user.target'
+      
+      
+    - name: Allow port  "9100" for prometheus-exporter
+      community.general.ufw:
+          rule: allow
+          port:  "9100"
+          proto: tcp
+
+    - name: prometheus-exporter service restarted
+      service:
+        name: node_exporter
+        state: restarted
+      become: true
+
+#eof
