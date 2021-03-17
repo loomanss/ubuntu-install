@@ -12,7 +12,6 @@
     port_prometheus3 : 8000 
   tasks:
 
-
     - name: Check docker is installed
       command: dpkg-query -l docker
       register: docker_check
@@ -20,32 +19,13 @@
     - name: include docker install if not installed
       include: tasks/docker_install.yml
       when: docker_check.stdout.find('no packages found') != -1
-      
-    - name: log in to dockerhub
-      community.docker.docker_login:
-        state: present
-        registry_url: "https://index.docker.io/v1/" # dockerhub
-        username: "{{ user }}"
-        password: "{{ pass }}"
 
-    - name: Pull prometheus image
-      community.docker.docker_image:
-       name: "prom/prometheus"
-       source: pull
-       state: present
-   
-    - name: Pull portainer image
-      community.docker.docker_image:
-       name: "portainer/portainer"
-       source: pull
-       state: present
-        
-    - name: Pull grafana image
-      community.docker.docker_image:
-       name: "grafana/grafana"
-       source: pull
-       state: present
-
+    - name: include docker images if not installed
+      include: tasks/docker_pull.yml
+      with_items:
+        - "portainer/portainer"
+        - "grafana/grafana"
+        - "prom/prometheus"
        
     - name: Create prometheus container
       docker_container:
