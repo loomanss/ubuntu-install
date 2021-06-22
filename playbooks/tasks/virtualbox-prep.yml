@@ -1,0 +1,14 @@
+---
+    - name: Disable services when running in virtual box
+      shell: if systemctl is-enabled --quiet {{ item }}; then systemctl disable {{ item }} && echo disable_ok ; fi
+      register: output
+      changed_when: "'disable_ok' in output.stdout"
+      loop:
+       - cups.service
+       - cups-browsed.service
+       - speech-dispatcher.service
+       - fprintd.service 
+       - ModemManager.service
+       - openvpn.service
+       - pppd-dns.service
+       - NetworkManager-wait-online.service
