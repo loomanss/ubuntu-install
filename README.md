@@ -34,6 +34,9 @@ sudo apt install curl git -y
 sudo setxkbmap be
 # cleanup tool
 sudo apt-get install deborphan
+# disable sudo password
+sudo echo "username ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.tmp
+```
 
 
 ## VirtualBox Vm's 
