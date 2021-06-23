@@ -26,7 +26,19 @@ get -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/rasp-in
 # Other commands 
 
 
-## VirtualBox Commands
-sudo apt update && apt -y upgrade    
-sudo apt-get install virtualbox-guest-additions-iso
+## Basic Commands
+```bash
+sudo apt update -y && sudo apt -y upgrade
+# set to belgian keyboard
+setxkbmap be
+# cleanup tool
+sudo apt-get install deborphan
 
+
+## VirtualBox Vm's 
+```bash
+sudo apt-get install virtualbox-guest-additions-iso
+sudo mkdir /media/iso
+# depending on the version: 
+sudo mount VBoxGuestAdditions_5.1.28.iso /media/iso
+```
