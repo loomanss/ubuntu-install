@@ -24,13 +24,14 @@ get -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/rasp-in
 
 
 # Other commands 
-
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 
 ## Basic Commands
 ```bash
 sudo apt update -y && sudo apt -y upgrade
+sudo apt install curl git -y
 # set to belgian keyboard
-setxkbmap be
+sudo setxkbmap be
 # cleanup tool
 sudo apt-get install deborphan
 
