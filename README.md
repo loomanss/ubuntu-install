@@ -20,3 +20,13 @@ wget -q http://mywebsite.com/myscript.txt -O
 
 # run the init script
 get -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/rasp-init.sh | bash
+
+
+
+# Other commands 
+
+
+## VirtualBox Commands
+sudo apt update && apt -y upgrade    
+sudo apt-get install virtualbox-guest-additions-iso
+
