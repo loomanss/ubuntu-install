@@ -35,7 +35,8 @@ sudo setxkbmap be
 # cleanup tool
 sudo apt-get install deborphan
 # disable sudo password
-sudo echo "username ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.tmp
+echo "$USER     ALL=(ALL) NOPASSWD:ALL" > /tmp/$USER
+sudo cp /tmp/$(echo $USER) /etc/sudoers.d/.
 ```
 
 
