@@ -42,17 +42,24 @@ sudo sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /e
 sudo update-grub
 ```
 
-## automatic user login
-```bash
-sudo sed -i -e 's/#  AutomaticLoginEnable = true/AutomaticLoginEnable = true/'  /etc/gdm3/custom.conf
-sudo sed -i -e 's/#  AutomaticLogin = user1/AutomaticLogin = <username>/'  /etc/gdm3/custom.conf
-```
-
 # disable sudo password
 ```bash
 echo "$USER     ALL=(ALL) NOPASSWD:ALL" > /tmp/$USER
 sudo cp /tmp/$(echo $USER) /etc/sudoers.d/.
 ```
+
+## automatic user login
+```bash
+cat > /tmp/set_autologon.sh << eof
+#!/bin/bash
+sudo sed -i -e 's/#  AutomaticLoginEnable = true/AutomaticLoginEnable = true/'  /etc/gdm3/custom.conf
+sudo sed -i -e 's/#  AutomaticLogin = user1/AutomaticLogin = $USER/' /etc/gdm3/custom.conf
+echo "done"
+eof
+chmod +x /tmp/set_autologon.sh
+/tmp/set_autologon.sh
+```
+
 
 # set to belgian keyboard
 ```bash
