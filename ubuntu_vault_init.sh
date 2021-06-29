@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -qO https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh | bash 
+# wget -qO "https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh" | bash 
 cd /tmp/
 wget -O vault.zip  "https://vault.bitwarden.com/download/?platform=linux&app=cli"
 unzip vault.zip
