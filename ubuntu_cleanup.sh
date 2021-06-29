@@ -38,5 +38,5 @@ sudo killall -e cupsd
 sudo killall -e seahorse
 ps -aux | wc -l
 
-rm -r -v ~/.mozilla && rm -r -v ~/.cache/mozilla
+rm -r -v ~/.mozilla && rm -r -v ~/.cache/mozilla > dev/null
 
