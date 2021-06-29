@@ -9,7 +9,7 @@ fi
 
 if [[ -f "/usr/local/bin/bw" ]]; then
   echo "removing old installed version..."
-  rm /usr/local/bin/bw
+  sudo rm /usr/local/bin/bw
 fi
 
 
