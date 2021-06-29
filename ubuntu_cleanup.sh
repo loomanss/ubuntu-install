@@ -16,7 +16,7 @@ sudo du -h /var/lib/snapd
 
 sudo du -sh /var/cache/apt/archives
 
-find /home -type f -exec du -h {} + | sort -hr | head -20
+# find /home -type f -exec du -h {} + | sort -hr | head -20
 
 
 ps -aux | wc -l
