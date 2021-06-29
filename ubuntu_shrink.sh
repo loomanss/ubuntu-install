@@ -87,13 +87,6 @@ sudo systemctl mask whoopsie.service
 
 systemctl list-unit-files --state=enabled | wc -l
 
-
-# journalctl optimalization
-
-sudo journalctl --vacuum-size=300M --vacuum-time=2d --vacuum-files=5
-#sudo rm /var/log/ -r
-
-
 # disable animations and  background image to save mem
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000455'
@@ -121,3 +114,15 @@ gsettings set org.gnome.desktop.privacy disable-sound-output true
 gsettings set org.gnome.settings-daemon.plugins.keyboard active false
 
 # gsettings set org.gtk.Settings.FileChooser show-hidden true
+# Experimental - start
+sudo mv /usr/lib/evolution-data-server /usr/lib/evolution-data-server-disabled
+sudo mv /usr/lib/evolution-addressbook-factory /usr/lib/evolution-addressbook-factory-disabled
+sudo mv /usr/libexec/evolution-calendar-factory /usr/libexec/evolution-calendar-factory-disabled
+sudo mv /usr/libexec/evolution-source-registry /usr/libexec/evolution-source-registry-disabled
+sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/evolution-data-server/evolution-alarm-notify-disabled
+# Experimental - end
+
+# journalctl optimalization
+sudo journalctl --vacuum-size=300M --vacuum-time=2d --vacuum-files=5
+#sudo rm /var/log/ -r
+
