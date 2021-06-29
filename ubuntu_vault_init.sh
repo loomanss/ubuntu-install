@@ -49,5 +49,5 @@ chmod 644 -f ~/.ssh/*.pub ~/.ssh/authorized_keys ~/.ssh/known_hosts
 
 alias bwin='bw login --raw ' >> ~/.bashrc
 alias bwun='export BW_SESSION=$(bw unlock --raw)' >> ~/.bashrc
-alias bwout='bw lock' >> ~/.bashrc
+alias bwout='bw logout' >> ~/.bashrc
 #source ~/.bashrc
