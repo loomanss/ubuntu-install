@@ -3,6 +3,13 @@
 
 # wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_shrink.sh | bash
 
+
+
+# sudo sed -i -e 's/GRUB_CMDLINE_LINUX_DEFAULT="maybe-ubiquity"/GRUB_CMDLINE_LINUX_DEFAULT="ipv6.disable=1 maybe-ubiquity"/' /etc/default/grub
+sudo sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/default/grub
+sudo update-grub
+
+
 # automatic logon for Virtualbox-ubuntu
 
 cat > /tmp/set_autologon.sh << eof
@@ -13,6 +20,11 @@ echo "done"
 eof
 chmod +x /tmp/set_autologon.sh
 /tmp/set_autologon.sh
+
+# disable sudo password 
+
+echo "$USER     ALL=(ALL) NOPASSWD:ALL" > /tmp/$USER
+sudo cp /tmp/$(echo $USER) /etc/sudoers.d/.
 
 
 # disable ip6 and smaller timeout for grub
