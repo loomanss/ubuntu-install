@@ -93,8 +93,8 @@ sudo sed -i -e 's/X-GNOME-Autostart-Notify=true/X-GNOME-Autostart-Notify=false/'
 message "Disabling services... "
 systemctl list-unit-files --state=enabled | wc -l
 sudo systemctl mask  bluetooth.service
-systemctl --reverse list-dependencies cups.service
-systemctl disable cups.service cups.socket cups.path
+sudo systemctl --reverse list-dependencies cups.service
+sudo systemctl disable cups.service cups.socket cups.path
 sudo systemctl mask  cups-browsed.service
 sudo systemctl mask  NetworkManager-wait-online.service
 sudo systemctl stop pulseaudio-enable-autospawn
