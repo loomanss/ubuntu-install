@@ -2,7 +2,7 @@
 
 # wget -q https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh | bash 
 cd /tmp/
-wget -q "https://vault.bitwarden.com/download/?platform=linux&app=cli" -O vault.zip
+wget -q https://vault.bitwarden.com/download/?platform=linux&app=cli -O vault.zip
 unzip vault.zip
 sudo install bw /usr/local/bin/
 
