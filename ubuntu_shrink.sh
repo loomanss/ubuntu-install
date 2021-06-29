@@ -101,7 +101,7 @@ gsettings set org.gnome.desktop.interface enable-animations false
 # other ui stuff
 gsettings set org.gnome.desktop.calendar show-weekdate true
 gsettings set org.gnome.shell.overrides attach-modal-dialogs false  # modals don't "stick" to parent window
-gsettings set org.gnome.shell enable-hot-corners true
+# gsettings set org.gnome.shell enable-hot-corners true
 gsettings set org.gnome.settings-daemon.plugins.print-notifications active false
 
 # disable some hardware-stuff not needed in virtualbox
