@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_shrink.sh
+# wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_shrink.sh | bash
 
 # automatic logon for Virtualbox-ubuntu
 
