@@ -90,7 +90,7 @@ systemctl list-unit-files --state=enabled | wc -l
 # journalctl optimalization
 
 sudo journalctl --vacuum-size=300M --vacuum-time=2d --vacuum-files=5
-sudo rm /var/log/ -r
+#sudo rm /var/log/ -r
 
 
 # disable animations and  background image to save mem
