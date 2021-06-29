@@ -10,4 +10,7 @@ echo " start usering bw with  export BW_SESSION=$(bw login <emailaddress> --raw)
 echo "bw get item http://url.com wil return full object. get the id"
 echo "bw get password id wil return only password"
 
-
+read bwusername
+export BW_SESSION=$(bw login $bwusername --raw) 
+echo "type "bw unlock"
+echo "bw get password google"
