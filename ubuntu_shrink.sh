@@ -25,7 +25,7 @@ sudo update-grub
 sudo apt update -y && sudo apt -y upgrade
 sudo apt-get autoclean
 sudo apt-get autoremove 
-sudo apt install curl git -y
+sudo apt install curl git jq -y
 
 
 sudo apt autoremove snapd gnome-software-plugin-snap speech-dispatcher-audio-plugins speech-dispatcher-espeak-ng  speech-dispatcher \
