@@ -48,13 +48,13 @@ sudo apt install curl git jq -y
 
 message "remove gnome stuff...."
 sudo apt autoremove snapd gnome-software-plugin-snap speech-dispatcher-audio-plugins speech-dispatcher-espeak-ng  speech-dispatcher \
-whoopsie update-notifier update-notifier-common packagekit xserver-xorg-input-wacom libwacom-bin avahi-daemon gnome-bluetooth \
-gnome-power-manager powermgmt-base gnome-themes-extra-data gnome-themes-extra pulseaudio pulseaudio-utils xul-ext-ubufox \
+whoopsie update-notifier update-notifier-common packagekit xserver-xorg-input-wacom libwacom-bin avahi-daemon  \
+gnome-power-manager powermgmt-base pulseaudio pulseaudio-utils xul-ext-ubufox \
 tracker tracker-extract tracker-miner-fs libmbim-proxy whoopsie bluez bluez-cups bluez-obexd  whoopsie-preferences \
 gnome-online-accounts gvfs-backends apport apport-gtk apport-symptoms  gnome-font-viewer \
 gnome-calculator gnome-getting-started-docs  -y
 
-# ubuntu-advantage-tools
+# ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra gnome-bluetooth
 
 message "remove printer stuff..."
 # remove printer drivers
@@ -114,7 +114,7 @@ sudo systemctl stop apport
 sudo systemctl mask apport
 sudo systemctl mask ureadahead 
 sudo systemctl mask plymouth 
-sudo systemctl mask systemd.networkd.service
+# sudo systemctl mask systemd.networkd.service
 sudo systemctl mask packagekit.service
 sudo systemctl stop whoopsie.service  
 sudo systemctl mask whoopsie.service  
@@ -126,6 +126,11 @@ message "setting default ui options to save memory..."
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000455'
 gsettings set org.gnome.desktop.interface enable-animations false
+
+cat > ~/.config/gtk-4.0/settings.ini << eof
+[Settings]
+gtk-application-prefer-dark-theme=1
+eof
 
 # other ui stuff
 message "setting other ui options..."
