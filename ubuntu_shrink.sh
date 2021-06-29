@@ -170,4 +170,6 @@ message "journalctl optimalization..."
 sudo journalctl --vacuum-size=300M --vacuum-time=2d --vacuum-files=5
 #sudo rm /var/log/ -r
 
+message " Adjust swappiness..."
+sudo bash -c 'echo "vm.swappiness=10" >>  /etc/sysctl.d/99-sysctl.conf'
 message "Done!"
