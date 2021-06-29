@@ -63,6 +63,13 @@ printer-driver-pnm2ppa printer-driver-foo2zjs printer-driver-brlaser printer-dri
 printer-driver-sag-gdi printer-driver-hpcups system-config-printer-common system-config-printer-udev \
 cups-browsed cups-filters-core-drivers cups -y
 
+
+message "remove fonts..."
+sudo apt-get remove "fonts-kacst*" "fonts-khmeros*" fonts-lklug-sinhala fonts-guru-extra "fonts-nanum*" fonts-noto-cjk "fonts-takao*"  \
+fonts-tibetan-machine fonts-lao fonts-sil-padauk fonts-sil-abyssinica "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-gargi fonts-gubbi  \
+fonts-gujr-extra fonts-kalapi "fonts-samyak*"  \
+fonts-navilu fonts-nakula fonts-orya-extra fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva \
+
 # kernel cleanup
 
 message "kernel cleanup..."
