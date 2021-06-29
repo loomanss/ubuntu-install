@@ -34,6 +34,10 @@ bw list items | jq -c '.[] |select(.id|contains("53d2339c-70a1-4ed3-a077-aaf100a
 sed -ie 's/^"//'  ~/.ssh/id_rsa.b64
 sed -ie 's/"$//' ~/.ssh/id_rsa.b64
 openssl base64  -A -d -in ~/.ssh/id_rsa.b64 -out ~/.ssh/id_rsa
+
+
+
+
 cat  ~/.ssh/id_rsa
 
 
@@ -47,7 +51,10 @@ chmod 600 ~/.ssh/*
 chmod 644 -f ~/.ssh/*.pub ~/.ssh/authorized_keys ~/.ssh/known_hosts
 
 
-alias bwin='export BW_SESSION=$(bw login --raw)' >> ~/.bashrc
+ >> ~/.bashrc
 #alias bwun='export BW_SESSION=$(bw unlock --raw)' >> ~/.bashrc
 alias bwout='bw logout' >> ~/.bashrc
 #source ~/.bashrc
+
+printf "%s\n" "alias bwin='export BW_SESSION=$(bw login --raw)'" >> ~/.bashrc
+printf "%s\n" "alias bwout='bw logout'" >> ~/.bashrc
