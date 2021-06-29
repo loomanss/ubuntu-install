@@ -163,6 +163,9 @@ sudo mv /usr/lib/evolution-addressbook-factory /usr/lib/evolution-addressbook-fa
 sudo mv /usr/libexec/evolution-calendar-factory /usr/libexec/evolution-calendar-factory-disabled
 sudo mv /usr/libexec/evolution-source-registry /usr/libexec/evolution-source-registry-disabled
 sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/evolution-data-server/evolution-alarm-notify-disabled
+
+# disable bluetooth stuff
+sudo echo "blacklist btusb" | sudo tee /etc/modprobe.d/blacklist-bluetooth.conf
 # Experimental - end
 
 message "journalctl optimalization..."
@@ -172,4 +175,7 @@ sudo journalctl --vacuum-size=300M --vacuum-time=2d --vacuum-files=5
 
 message " Adjust swappiness..."
 sudo bash -c 'echo "vm.swappiness=10" >>  /etc/sysctl.d/99-sysctl.conf'
+
+message "Disabling firewall logging..."
+sudo ufw logging off
 message "Done!"
