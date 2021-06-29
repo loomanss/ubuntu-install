@@ -10,11 +10,11 @@ du -h ~/.cache/thumbnails
 sudo rm -rf ~/.cache/thumbnails/*
 du -h ~/.cache/thumbnails
 
-du -h /var/lib/snapd
+sudo du -h /var/lib/snapd
 sudo rm -rf /var/lib/snapd/*
-du -h /var/lib/snapd
+sudo du -h /var/lib/snapd
 
-du -sh /var/cache/apt/archives
+sudo du -sh /var/cache/apt/archives
 
 find /home -type f -exec du -h {} + | sort -hr | head -20
 
