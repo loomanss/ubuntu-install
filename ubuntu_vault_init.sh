@@ -1,11 +1,22 @@
 #!/bin/bash
 
 # wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh | bash 
-cd /tmp/
+
+if [[ -f "/tmp/vault.zip" ]]; then
+  echo "removing old download version..."
+  rm /tmp/vault.zip
+fi
+
+if [[ -f "/usr/local/bin/bw" ]]; then
+  echo "removing old installed version..."
+  rm /usr/local/bin/bw
+fi
+
+
 echo "Downloading ..."
-wget -O vault.zip  "https://vault.bitwarden.com/download/?platform=linux&app=cli"
+wget -O /tmp/vault.zip  "https://vault.bitwarden.com/download/?platform=linux&app=cli"
 echo "Unpack ..."
-unzip vault.zip
+unzip /tmp/vault.zip
 echo "Install ..."
 sudo install bw /usr/local/bin/ 
 
