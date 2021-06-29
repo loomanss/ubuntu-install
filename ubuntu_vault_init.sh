@@ -2,15 +2,19 @@
 
 # wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh | bash 
 cd /tmp/
-
+echo "Downloading ..."
 wget -O vault.zip  "https://vault.bitwarden.com/download/?platform=linux&app=cli"
+echo "Unpack ..."
 unzip vault.zip
+echo "Install ..."
 sudo install bw /usr/local/bin/ 
 
 echo ' start usering bw with  export BW_SESSION=$(bw login <emailaddress> --raw) '
 echo "bw get item http://url.com wil return full object. get the id"
 echo "bw get password id wil return only password"
 
+
+echo "Configure ..."
 read bwusername
 export BW_SESSION=$(bw login $bwusername --raw) 
 echo "type "bw unlock"
@@ -18,7 +22,7 @@ echo "bw get password google"
 
 export BW_SESSION=$(bw unlock --raw)
 
-
+echo "installing ssh keys ..."
 bw list items | jq -c '.[] |select(.id|contains("53d2339c-70a1-4ed3-a077-aaf100a470bd")) | .notes' >> ~/.ssh/id_rsa.b64
  sed -ie 's/^"//'  ~/.ssh/id_rsa.b64
  sed -ie  's/"$//' ~/.ssh/id_rsa.b64
