@@ -1,4 +1,5 @@
 #!/bin/bash
+# script to remove packages from 20.04 desktop
 
 # wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_shrink.sh | bash
 
