@@ -71,7 +71,8 @@ sudo apt-get autoremove "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-ga
 sudo apt-get autoremove "fonts-samyak*" fonts-tlwg-typo-ttf fonts-navilu fonts-nakula fonts-orya-extra  -y
 sudo apt-get autoremove fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva  -y
 sudo apt clean
-
+sudo apt autoremove plymouth-label plymouth-theme-spinner va-driver-all
+sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse network-manager-openvpn network-manager-pptp network-manager-pptp-gnome -y
 # kernel cleanup
 
 message "kernel cleanup..."
