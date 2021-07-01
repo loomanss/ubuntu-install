@@ -40,3 +40,5 @@ ps -aux | wc -l
 
 rm -r -v ~/.mozilla && rm -r -v ~/.cache/mozilla > dev/null
 
+#sudo modprobe -r psmouse
+#sudo modprobe -r uvcvideo
