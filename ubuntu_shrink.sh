@@ -187,7 +187,8 @@ sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/e
 # asus_acpi: replaced by asus-laptop (Ubuntu: #184721)
 # snd_pcsp: low-quality, just noise when being used for sound playback, causes  hangs at desktop session start (Ubuntu: #246969)
 # amd76x_edac: EDAC driver for amd76x clashes with the agp driver preventing the aperture from being initialised (Ubuntu: #297750). Blacklist so that the driver continues to build and is installable for the few cases where its really needed.
-modules=("evbug" "btusb" "eepro100" "pcspkr" "de4x5" "prism54" "bcm43xx" "psmouse")
+# uvcvideo: Disable webcam
+modules=("btusb" "uvcvideo")
 
 for MOD in "${modules[@]}"; do
   CURRENT_CMD="sudo echo 'blacklist $MOD' | sudo tee /etc/modprobe.d/blacklist-$MOD.conf"
