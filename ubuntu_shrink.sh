@@ -65,11 +65,12 @@ sudo apt autoremove cups-browsed cups-filters-core-drivers cups -y
 
 
 message "remove fonts..."
-sudo apt-get autoremove  gnome-font-viewer "fonts-kacst*" "fonts-khmeros*" fonts-lklug-sinhala fonts-guru-extra "fonts-nanum*" fonts-noto-cjk "fonts-takao*"  \
-fonts-tibetan-machine fonts-lao fonts-sil-padauk fonts-sil-abyssinica "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-gargi fonts-gubbi  \
-fonts-gujr-extra fonts-kalapi "fonts-samyak*" fonts-tlwg-typo-ttf \
-fonts-navilu fonts-nakula fonts-orya-extra fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva \
- -y
+sudo apt-get autoremove gnome-font-viewer "fonts-kacst*" "fonts-khmeros*" fonts-lklug-sinhala fonts-guru-extra "fonts-nanum*"  -y
+sudo apt-get autoremove fonts-noto-cjk "fonts-takao*" fonts-tibetan-machine fonts-lao fonts-sil-padauk fonts-sil-abyssinica  -y
+sudo apt-get autoremove "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-gargi fonts-gubbi fonts-gujr-extra fonts-kalapi   -y
+sudo apt-get autoremove "fonts-samyak*" fonts-tlwg-typo-ttf fonts-navilu fonts-nakula fonts-orya-extra  -y
+sudo apt-get autoremove fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva  -y
+sudo apt clean
 
 # kernel cleanup
 
@@ -163,7 +164,7 @@ gsettings set org.gnome.desktop.session idle-delay 0
 gsettings set org.gnome.desktop.privacy disable-sound-output true
 gsettings set org.gnome.settings-daemon.plugins.keyboard active false
 
-# gsettings set org.gtk.Settings.FileChooser show-hidden true
+# gsettings set org.gtk.Settings.F show-hidden true
 # Experimental - start
 message "Experimental - start..."
 sudo mv /usr/lib/evolution-data-server /usr/lib/evolution-data-server-disabled
