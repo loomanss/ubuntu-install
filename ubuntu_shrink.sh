@@ -69,6 +69,7 @@ sudo apt-get autoremove  gnome-font-viewer "fonts-kacst*" "fonts-khmeros*" fonts
 fonts-tibetan-machine fonts-lao fonts-sil-padauk fonts-sil-abyssinica "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-gargi fonts-gubbi  \
 fonts-gujr-extra fonts-kalapi "fonts-samyak*" fonts-tlwg-typo-ttf \
 fonts-navilu fonts-nakula fonts-orya-extra fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva \
+ -y
 
 # kernel cleanup
 
