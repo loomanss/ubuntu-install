@@ -171,8 +171,28 @@ sudo mv /usr/libexec/evolution-calendar-factory /usr/libexec/evolution-calendar-
 sudo mv /usr/libexec/evolution-source-registry /usr/libexec/evolution-source-registry-disabled
 sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/evolution-data-server/evolution-alarm-notify-disabled
 
-# disable bluetooth stuff
-sudo echo "blacklist btusb" | sudo tee /etc/modprobe.d/blacklist-bluetooth.conf
+# disable modules stuff
+# pcspkr  pc speaker 
+# usbmouse : these drivers are very simple, the HID drivers are usually preferred
+# usbkbd : these drivers are very simple, the HID drivers are usually preferred
+# eepro100 : replaced by e100
+# de4x5 : replaced by tulip
+# eth1394: causes no end of confusion by creating unexpected network interfaces
+# snd_intel8x0m: snd_intel8x0m can interfere with snd_intel8x0, doesn't seem to support much  hardware on its own (Ubuntu bug #2011, #6810)
+# snd_aw2: Conflicts with dvb driver (which is better for handling this device)
+# i2c_i801: causes failure to suspend on HP compaq nc6000 (Ubuntu: #10306)
+# prism54: replaced by p54pci
+# bcm43xx: replaced by b43 and ssb.
+# garmin_gps: most apps now use garmin usb driver directly (Ubuntu: #114565)
+# asus_acpi: replaced by asus-laptop (Ubuntu: #184721)
+# snd_pcsp: low-quality, just noise when being used for sound playback, causes  hangs at desktop session start (Ubuntu: #246969)
+# amd76x_edac: EDAC driver for amd76x clashes with the agp driver preventing the aperture from being initialised (Ubuntu: #297750). Blacklist so that the driver continues to build and is installable for the few cases where its really needed.
+modules=("evbug" "btusb" "eepro100" "pcspkr" "de4x5" "prism54" "bcm43xx")
+
+for MOD in "${modules[@]}"; do
+  CURRENT_CMD="sudo echo 'blacklist $MOD' | sudo tee /etc/modprobe.d/blacklist-$MOD.conf"
+  eval $CURRENT_CMD
+done
 # Experimental - end
 
 message "journalctl optimalization..."
