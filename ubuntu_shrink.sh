@@ -47,14 +47,14 @@ sudo apt install curl git jq -y
 
 
 message "remove gnome stuff...."
-# sudo apt autoremove snapd gnome-software-plugin-snap speech-dispatcher-audio-plugins speech-dispatcher-espeak-ng  speech-dispatcher -y
-# sudo apt autoremove update-notifier update-notifier-common packagekit avahi-daemon  -y
-# sudo apt autoremove gnome-power-manager powermgmt-base pulseaudio pulseaudio-utils xul-ext-ubufox -y
-# sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy bluez bluez-cups bluez-obexd whoopsie whoopsie-preferences -y
-# sudo apt autoremove gnome-online-accounts gvfs-backends apport apport-gtk apport-symptoms   -y
-# sudo apt autoremove gnome-calculator gnome-getting-started-docs  -y
-# sudo apt autoremove xserver-xorg-input-wacom libwacom-bin
-# sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra gnome-bluetooth
+ sudo apt autoremove snapd gnome-software-plugin-snap speech-dispatcher-audio-plugins speech-dispatcher-espeak-ng  speech-dispatcher -y
+ sudo apt autoremove update-notifier update-notifier-common packagekit avahi-daemon  -y
+ sudo apt autoremove gnome-power-manager powermgmt-base pulseaudio pulseaudio-utils yaru-theme-sound xul-ext-ubufox -y
+ sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy bluez bluez-cups bluez-obexd whoopsie whoopsie-preferences -y
+ sudo apt autoremove gnome-online-accounts gvfs-backends apport apport-gtk apport-symptoms   -y
+ sudo apt autoremove gnome-calculator gnome-getting-started-docs  -y
+ sudo apt autoremove xserver-xorg-input-wacom libwacom-bin
+ sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra gnome-bluetooth
 
 message "remove printer stuff..."
 # remove printer drivers
@@ -67,7 +67,7 @@ sudo apt autoremove cups-browsed cups-filters-core-drivers cups -y
 message "remove fonts..."
 sudo apt-get autoremove  gnome-font-viewer "fonts-kacst*" "fonts-khmeros*" fonts-lklug-sinhala fonts-guru-extra "fonts-nanum*" fonts-noto-cjk "fonts-takao*"  \
 fonts-tibetan-machine fonts-lao fonts-sil-padauk fonts-sil-abyssinica "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-gargi fonts-gubbi  \
-fonts-gujr-extra fonts-kalapi "fonts-samyak*"  \
+fonts-gujr-extra fonts-kalapi "fonts-samyak*" fonts-tlwg-typo-ttf \
 fonts-navilu fonts-nakula fonts-orya-extra fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva \
 
 # kernel cleanup
