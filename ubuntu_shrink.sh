@@ -172,6 +172,7 @@ sudo mv /usr/libexec/evolution-source-registry /usr/libexec/evolution-source-reg
 sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/evolution-data-server/evolution-alarm-notify-disabled
 
 # disable modules stuff
+# btusb : bluetooth usb
 # pcspkr  pc speaker 
 # usbmouse : these drivers are very simple, the HID drivers are usually preferred
 # usbkbd : these drivers are very simple, the HID drivers are usually preferred
@@ -189,7 +190,12 @@ sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/e
 # amd76x_edac: EDAC driver for amd76x clashes with the agp driver preventing the aperture from being initialised (Ubuntu: #297750). Blacklist so that the driver continues to build and is installable for the few cases where its really needed.
 # uvcvideo: Disable webcam
 # parport_pc : disable parallel port
-modules=("btusb" "uvcvideo" "parport_pc")
+# ppdev : disable ?
+# lp : disable ?
+# parport: disable parallel port
+# input_leds
+
+modules=("btusb" "uvcvideo" "parport_pc" "ppdev" "lp" "parport" "input_leds")
 
 for MOD in "${modules[@]}"; do
   CURRENT_CMD="sudo echo 'blacklist $MOD' | sudo tee /etc/modprobe.d/blacklist-$MOD.conf"
