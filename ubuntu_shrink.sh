@@ -57,7 +57,7 @@ message "remove gnome stuff...."
 sudo apt autoremove apport apport-gtk apport-symptoms -y
  sudo apt autoremove gnome-online-accounts gvfs-backends   -y
  sudo apt autoremove gnome-calculator gnome-getting-started-docs  -y
- sudo apt autoremove xserver-xorg-input-wacom libwacom-bin
+ sudo apt autoremove xserver-xorg-input-wacom libwacom-bin -y
  sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra -y
  
 message "remove tracking stuff...."
