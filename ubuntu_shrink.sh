@@ -138,7 +138,7 @@ gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000455'
 gsettings set org.gnome.desktop.interface enable-animations false
 
-cat > ~/.config/gtk-4.0/settings.ini << eof
+cat > ~/.config/gtk-3.0/settings.ini << eof
 [Settings]
 gtk-application-prefer-dark-theme=1
 eof
