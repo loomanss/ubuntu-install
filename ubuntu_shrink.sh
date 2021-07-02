@@ -61,7 +61,7 @@ sudo apt autoremove apport apport-gtk apport-symptoms -y
  sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra -y
  
 message "remove tracking stuff...."
-sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy 
+#sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy -y
 message "remove sound stuff...."
 sudo apt autoremove alsa-base gstreamer1.0-pulseaudio pulseaudio pulseaudio-utils yaru-theme-sound  alsa-topology-conf alsa-ucm-conf  alsa-utils -y
 
