@@ -38,7 +38,17 @@ sudo killall -e cupsd
 sudo killall -e seahorse
 ps -aux | wc -l
 
-rm -r -v ~/.mozilla && rm -r -v ~/.cache/mozilla > dev/null
+sudo rm /etc/chatscripts -rf
+sudo rm /etc/bluetooth -rf
+sudo rm /etc/pcmcia/ -rf
+sudo rm /etc/wpa_supplicant/ -rf
+rm -r ~/.config/pulse/
+sudo rm /etc/init.d/plymouth -rf
+rm ~/.local/share/tracker/data -rf
+rm ~/.local/share/xorg/* -rf
+rm ~/.cache/ -rf
 
+rm -r -v ~/.mozilla && rm -r -v ~/.cache/mozilla > dev/null
+sudo rm /var/log/ -r
 #sudo modprobe -r psmouse
 #sudo modprobe -r uvcvideo
