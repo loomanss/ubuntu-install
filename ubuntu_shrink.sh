@@ -198,8 +198,10 @@ sudo mv /usr/libexec/evolution-data-server/evolution-alarm-notify /usr/libexec/e
 # lp : disable ?
 # parport: disable parallel port
 # input_leds
+# joydev : joystick driver
+# ns558 : joystick driver
 
-modules=("btusb" "uvcvideo" "parport_pc" "ppdev" "lp" "parport" "input_leds")
+modules=("btusb" "uvcvideo" "parport_pc" "ppdev" "lp" "parport" "input_leds" "joydev")
 
 for MOD in "${modules[@]}"; do
   CURRENT_CMD="sudo echo 'blacklist $MOD' | sudo tee /etc/modprobe.d/blacklist-$MOD.conf"
