@@ -45,7 +45,7 @@ sudo sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /e
 sudo update-grub
 
 message "apt update and install curl git jq..."
-sudo apt update -y && sudo apt -y upgrade
+sudo apt update -y 
 sudo apt install curl git jq autoremove autoclean -y
 
 
@@ -64,15 +64,17 @@ message "remove tracking stuff...."
 sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy 
 message "remove sound stuff...."
 sudo apt autoremove alsa-base gstreamer1.0-pulseaudio pulseaudio pulseaudio-utils yaru-theme-sound  alsa-topology-conf alsa-ucm-conf  alsa-utils -y
-message "remove bluetooth stuff...."
-sudo apt autoremove libbluetooth3 bluez bluez-cups bluez-obexd gnome-bluetooth -y
-sudo apt autoremove chromium-codecs-ffmpeg-extra
-sudo apt autoremove whoopsie whoopsie-preferences -y 
-message "remove Network stuff...."
-sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse -y 
-sudo apt-get autoremove network-manager-openvpn network-manager-pptp network-manager-pptp-gnome -y
-sudo apt autoremove ubuntu-advantage-tools -y
-sudo apt autoremove plymouth-label plymouth-theme-spinner va-driver-all -y
+
+
+#message "remove bluetooth stuff...."
+#sudo apt autoremove libbluetooth3 bluez bluez-cups bluez-obexd gnome-bluetooth -y
+#sudo apt autoremove chromium-codecs-ffmpeg-extra
+#sudo apt autoremove whoopsie whoopsie-preferences -y 
+#message "remove Network stuff...."
+#sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse -y 
+#sudo apt-get autoremove network-manager-openvpn network-manager-pptp network-manager-pptp-gnome -y
+#sudo apt autoremove ubuntu-advantage-tools -y
+#sudo apt autoremove plymouth-label plymouth-theme-spinner va-driver-all -y
 
 
 message "remove printer stuff..."
@@ -94,6 +96,7 @@ sudo apt-get autoremove "fonts-samyak*" fonts-tlwg-typo-ttf fonts-navilu fonts-n
 sudo apt-get autoremove fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva  -y
 
 
+sudo apt -y upgrade
 # kernel cleanup
 
 message "kernel cleanup..."
