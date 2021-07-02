@@ -15,6 +15,11 @@ error()   { echo -e "\e[1;31m\nError: ${1}\n\e[0m";  exit 1; }
 sudo sed -i -e 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="ipv6.disable=1"/' /etc/default/grub
 sudo update-grub
 
+message "Disable sudo password..."
+
+echo "$USER     ALL=(ALL) NOPASSWD:ALL" > /tmp/$USER
+sudo cp /tmp/$(echo $USER) /etc/sudoers.d/.
+
 message "setting autologon..."
 # automatic logon for Virtualbox-ubuntu
 
