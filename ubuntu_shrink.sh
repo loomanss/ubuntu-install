@@ -53,20 +53,25 @@ message "remove gnome stuff...."
  sudo apt autoremove snapd gnome-software-plugin-snap speech-dispatcher-audio-plugins speech-dispatcher-espeak-ng  speech-dispatcher -y
  sudo apt autoremove update-notifier update-notifier-common packagekit avahi-daemon  -y
  sudo apt autoremove gnome-power-manager powermgmt-base  xul-ext-ubufox -y
- 
- sudo apt remove gstreamer1.0-pulseaudio pulseaudio pulseaudio-utils yaru-theme-sound -y
- sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy 
- sudo apt autoremove gnome-online-accounts gvfs-backends apport apport-gtk apport-symptoms   -y
+
+sudo apt autoremove apport apport-gtk apport-symptoms -y
+ sudo apt autoremove gnome-online-accounts gvfs-backends   -y
  sudo apt autoremove gnome-calculator gnome-getting-started-docs  -y
  sudo apt autoremove xserver-xorg-input-wacom libwacom-bin
  sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra -y
  
- message "remove bluetooth stuff...."
- sudo apt autoremove libbluetooth3 bluez bluez-cups bluez-obexd whoopsie whoopsie-preferences gnome-bluetooth -y
- message "remove Network stuff...."
- sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse -y 
+message "remove tracking stuff...."
+sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy 
+message "remove sound stuff...."
+sudo apt autoremove alsa-base gstreamer1.0-pulseaudio pulseaudio pulseaudio-utils yaru-theme-sound  alsa-topology-conf alsa-ucm-conf  alsa-utils -y
+message "remove bluetooth stuff...."
+sudo apt autoremove libbluetooth3 bluez bluez-cups bluez-obexd gnome-bluetooth -y
+sudo apt autoremove chromium-codecs-ffmpeg-extra
+sudo apt autoremove whoopsie whoopsie-preferences -y 
+message "remove Network stuff...."
+sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse -y 
 sudo apt-get autoremove network-manager-openvpn network-manager-pptp network-manager-pptp-gnome -y
-sudo apt remove ubuntu-advantage-tools -y
+sudo apt autoremove ubuntu-advantage-tools -y
 sudo apt autoremove plymouth-label plymouth-theme-spinner va-driver-all -y
 
 
@@ -234,4 +239,7 @@ sudo bash -c 'echo "vm.swappiness=10" >>  /etc/sysctl.d/99-sysctl.conf'
 
 message "Disabling firewall logging..."
 sudo ufw logging off
+
+
+apt list --installed | sed  "s/\/focal.*//g" > /tmp/apt-list-installed.txt
 message "Done!"
