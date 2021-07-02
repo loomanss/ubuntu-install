@@ -46,27 +46,39 @@ sudo update-grub
 
 message "apt update and install curl git jq..."
 sudo apt update -y && sudo apt -y upgrade
-sudo apt-get autoclean
-sudo apt-get autoremove 
-sudo apt install curl git jq -y
+sudo apt install curl git jq autoremove autoclean -y
 
 
 message "remove gnome stuff...."
  sudo apt autoremove snapd gnome-software-plugin-snap speech-dispatcher-audio-plugins speech-dispatcher-espeak-ng  speech-dispatcher -y
  sudo apt autoremove update-notifier update-notifier-common packagekit avahi-daemon  -y
- sudo apt autoremove gnome-power-manager powermgmt-base pulseaudio pulseaudio-utils yaru-theme-sound xul-ext-ubufox -y
- sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy bluez bluez-cups bluez-obexd whoopsie whoopsie-preferences -y
+ sudo apt autoremove gnome-power-manager powermgmt-base  xul-ext-ubufox -y
+ 
+ sudo apt remove gstreamer1.0-pulseaudio pulseaudio pulseaudio-utils yaru-theme-sound -y
+ sudo apt autoremove tracker tracker-extract tracker-miner-fs libmbim-proxy 
  sudo apt autoremove gnome-online-accounts gvfs-backends apport apport-gtk apport-symptoms   -y
  sudo apt autoremove gnome-calculator gnome-getting-started-docs  -y
  sudo apt autoremove xserver-xorg-input-wacom libwacom-bin
- sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra gnome-bluetooth
+ sudo apt autoremove ubuntu-advantage-tools gnome-themes-extra-data gnome-themes-extra -y
+ 
+ message "remove bluetooth stuff...."
+ sudo apt autoremove libbluetooth3 bluez bluez-cups bluez-obexd whoopsie whoopsie-preferences gnome-bluetooth -y
+ message "remove Network stuff...."
+ sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse -y 
+sudo apt-get autoremove network-manager-openvpn network-manager-pptp network-manager-pptp-gnome -y
+sudo apt remove ubuntu-advantage-tools -y
+sudo apt autoremove plymouth-label plymouth-theme-spinner va-driver-all -y
+
 
 message "remove printer stuff..."
 # remove printer drivers
 sudo apt autoremove printer-driver-m2300w printer-driver-splix printer-driver-postscript-hp printer-driver-pxljr printer-driver-min12xxw -y
-sudo apt autoremove printer-driver-pnm2ppa printer-driver-foo2zjs printer-driver-brlaser printer-driver-c2esp printer-driver-ptouch  printer-driver-c2esp -y
+sudo apt autoremove printer-driver-pnm2ppa printer-driver-foo2zjs printer-driver-foo2zjs-common -y
+sudo apt autoremove printer-driver-brlaser printer-driver-c2esp printer-driver-ptouch  printer-driver-c2esp -y
 sudo apt autoremove printer-driver-sag-gdi printer-driver-hpcups system-config-printer-common system-config-printer-udev -y
-sudo apt autoremove cups-browsed cups-filters-core-drivers cups -y
+sudo apt autoremove cups-browsed cups-filters-core-drivers cups cups-bsd cups-client cups-common -y
+sudo apt autoremove cups-browsed printer-driver-hpcups libcupsfilters1 openprinting-ppds -y
+
 
 
 message "remove fonts..."
@@ -75,10 +87,8 @@ sudo apt-get autoremove fonts-noto-cjk "fonts-takao*" fonts-tibetan-machine font
 sudo apt-get autoremove "fonts-tlwg-*" "fonts-lohit-*" fonts-beng-extra fonts-gargi fonts-gubbi fonts-gujr-extra fonts-kalapi   -y
 sudo apt-get autoremove "fonts-samyak*" fonts-tlwg-typo-ttf fonts-navilu fonts-nakula fonts-orya-extra  -y
 sudo apt-get autoremove fonts-pagul fonts-sarai "fonts-telu*" "fonts-wqy*" "fonts-smc*" fonts-deva-extra fonts-sahadeva  -y
-sudo apt clean
-sudo apt autoremove plymouth-label plymouth-theme-spinner va-driver-all -y
-sudo apt-get autoremove  wireless-tools wireless-regdb pcmciautils seahorse -y 
-sudo apt-get autoremove network-manager-openvpn network-manager-pptp network-manager-pptp-gnome -y
+
+
 # kernel cleanup
 
 message "kernel cleanup..."
