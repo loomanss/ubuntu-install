@@ -1,27 +1,3 @@
-<<<<<<< HEAD
-#!/bin/bash
-# install ssh server
-sudo apt update -y  && sudo apt upgrade -y
-sudo apt install openssh-server -y
-sudo systemctl status ssh -y
-sudo ufw allow ssh -y
-
-#install git
-sudo apt install git -y
-
-# install ansible
-sudo apt install software-properties-common -y
-sudo apt-add-repository ppa:ansible/ansible -y
-sudo apt-get update -y
-sudo apt-get install ansible -y
-
-
-sudo mkdir /github/
-sudo cd /github/
-#sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
-sudo git clone https://github.com/loomanss/ubuntu-install.git
-sudo cd /github/ubuntu-install
-=======
 #!/bin/bash
 
 # install ssh server
@@ -30,14 +6,14 @@ echo -------------------------------------------------------------------------
 sudo -i
 sudo apt update
 sudo apt upgrade -y
-sudo ufw allow ssh 
+sudo ufw allow ssh -y
 echo
 echo
 echo installing prerequisites
 echo -------------------------------------------------------------------------
 #sudo add-apt-repository ppa:deadsnakes/ppa
 #sudo apt-get install python3.7 virtualenv -y
-sudo apt install software-properties-common git openssh-server -y
+sudo apt install software-properties-common git openssh-server jq curl -y
 #sudo apt install python3 virtualenv python-setuptools 
 sudo apt install python3-argcomplete  python3-pip   -y
 sudo activate-global-python-argcomplete3
@@ -70,9 +46,11 @@ sudo apt-get update
 
 echo
 echo
-echo INSTALL ansible
-echo -------------------------------------------------------------------------
+# install ansible
+sudo apt-add-repository ppa:ansible/ansible -y
+sudo apt-get update -y
 sudo apt-get install ansible -y
+
 echo
 echo
 echo INSTALL ansible galaxy community.general 
@@ -94,6 +72,7 @@ echo download playbook repo
 echo -------------------------------------------------------------------------
 sudo mkdir -p /share/github
 cd /share/github
+#sudo wget https://github.com/loomanss/ubuntu-install/archive/main.zip
 sudo git clone https://github.com/loomanss/ubuntu-install.git
 cd /share/github/ubuntu-install/playbooks/
->>>>>>> 3bb08324b97ea61e344e99719062278cb14c3276
+
