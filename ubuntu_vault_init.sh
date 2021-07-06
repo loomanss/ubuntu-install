@@ -5,6 +5,7 @@
 if [[ -f "/tmp/vault.zip" ]]; then
   echo "removing old download version..."
   rm /tmp/vault.zip
+  rm /tmp/bw
 fi
 
 if [[ -f "/usr/local/bin/bw" ]]; then
@@ -12,7 +13,7 @@ if [[ -f "/usr/local/bin/bw" ]]; then
   sudo rm /usr/local/bin/bw
 fi
 
-# sudo apt install git curl jq
+ sudo apt install git curl jq
 
 
 if [[ -z "${USER_EMAIL}" ]]; then
