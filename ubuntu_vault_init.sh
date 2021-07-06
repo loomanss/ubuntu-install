@@ -12,6 +12,28 @@ if [[ -f "/usr/local/bin/bw" ]]; then
   sudo rm /usr/local/bin/bw
 fi
 
+sudo apt install git curl jq
+
+
+if [[ -z "${USER_EMAIL}" ]]; then
+  echo "your emailaddress"
+  read USER_EMAIL
+else
+  echo "USER_EMAIL found! ..."
+fi
+
+if [[ -z "${USER_NAME}" ]]; then
+echo "your name"
+read USER_NAME
+else
+  echo "USER_NAME found! ..."
+fi
+
+
+
+git config --global user.email "$USER_EMAIL"
+git config --global user.name "$USER_NAME"
+
 
 echo "Downloading ..."
 wget -O /tmp/vault.zip  "https://vault.bitwarden.com/download/?platform=linux&app=cli"
