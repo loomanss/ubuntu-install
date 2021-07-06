@@ -1,0 +1,48 @@
+# cat >> chef-workstation.yml << #eof
+---
+  # https://docs.chef.io/quick_start/
+- name: chef-workstation installation playbook
+  hosts: localhost
+  vars:
+  tasks:
+  
+    - name: Update apt cache
+      # apt: update_cache=yes cache_valid_time=3600
+      command: apt update
+  
+    - name: Install ruby
+      apt:  
+       name: ['ruby']
+       state: present
+
+    - name: install chef-workstation deb file
+      apt:
+        #deb: https://packages.chef.io/files/stable/chef-workstation/21.1.233/ubuntu/20.04/chef-workstation_21.1.233-1_amd64.deb
+        deb: http://192.168.1.66:8000/chef-workstation_21.1.233-1_amd64.deb
+        state: present
+        
+    - name: Create a directory /share/cookbooks if it does not exist
+      ansible.builtin.file:
+        path: /share/cookbooks
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup
+
+        
+    - name: Create a Samba-share folder
+      include: tasks/sambashare.yml
+
+    - name: Update bashrc
+      lineinfile:
+        path:  ~/.bashrc
+        state: present
+        line: "{{ item }}"
+      with_items:
+          - 'eval "$(chef shell-init bash)"'
+
+    - name: installing bash-completion for chef commands
+      get_url:
+       url: https://raw.githubusercontent.com/loomanss/chef-bash-completion/master/chef-bash-completion
+       dest: /usr/share/bash-completion/completions/chef
+

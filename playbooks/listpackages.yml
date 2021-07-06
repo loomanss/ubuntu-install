@@ -1,0 +1,17 @@
+---
+- name: list packages
+  hosts: localhost
+  tasks:
+  
+   - name: Gather the package facts
+     package_facts:
+       manager: auto
+
+   - name: Print the package facts
+     debug:
+       var: ansible_facts.packages
+
+   - name: Check whether a package called foobar is installed
+     debug:
+       msg: "{{ ansible_facts.packages['check-mk-raw-1.6.0p20'] | length }} versions of foobar are installed!"
+     when: "'check-mk-raw-1.6.0p20' in ansible_facts.packages"

@@ -1,0 +1,72 @@
+---
+- name:  install checkmk
+  hosts: localhost
+  vars:
+    # packagename : check-mk-raw-1.6.0p20
+    # checkmk_url_deb : https://download.checkmk.com/checkmk/1.6.0p20/check-mk-raw-1.6.0p20_0.focal_amd64.deb
+    checkmk_url_deb : http://192.168.1.66:8000/check-mk-enterprise-1.6.0p20_0.focal_amd64.deb
+    packagename : check-mk-enterprise-1.6.0p20_0
+    sitename : monitor
+    admin_password : bomber-safe
+  tasks:
+  
+    - name: Gather the package facts
+      package_facts:
+        manager:  apt
+        
+    - name: Import a key from a checkmk APT repository
+      ansible.builtin.apt_key:
+        url: https://download.checkmk.com/checkmk/Check_MK-pubkey.gpg
+        state: present
+      
+    - name: apt install git if not present
+      apt:  
+       name: ['openssh-server','dpkg-sig','gdebi-core','net-tools']
+       state: present
+
+    - name: install check-mk deb file
+      apt: 
+        deb: "{{ checkmk_url_deb }}"
+        state: present
+      when: "'{{ packagename }}' not in ansible_facts.packages"
+      become: true
+      tags: install
+        
+    - name: Create {{ sitename }}
+      command: omd create {{ sitename }}
+      args:
+        creates: /opt/omd/sites/{{ sitename }}
+      register: sitename_created
+      
+    - name: Set admin password
+      command: "htpasswd -b /opt/omd/sites/{{ sitename }}/etc/htpasswd omdadmin '{{ admin_password }}'"
+      when: sitename_created is changed
+      become: true
+
+    - name: Restart site
+      command: "omd restart {{ sitename }}"
+      tags: config
+      when: sitename_created is changed
+      become: true
+      
+    - name: Allow port 6556
+      community.general.ufw:
+        rule: allow
+        port: '6566'
+        proto: tcp
+
+    - name: Allow port 80
+      community.general.ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+        
+    - name: Allow port 443
+      community.general.ufw:
+        rule: allow
+        port: '443'
+        proto: tcp
+  
+    - name: Print the package facts
+      debug:
+        var: ansible_facts.packages

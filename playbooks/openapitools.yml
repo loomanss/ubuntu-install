@@ -1,0 +1,27 @@
+---
+- name: install openapitools
+  hosts: localhost
+  tasks:
+  
+    - name: Install npm package
+      apt:  
+       name: ['npm','maven']
+       state: present
+       
+       
+    - name: Create a directory ~/bin/openapitools/if it does not exist
+      ansible.builtin.file:
+        path: ~/bin/openapitools/
+        state: directory
+        mode: '0755'
+
+
+    - name: installing openapi-generator-cli
+      get_url:
+       url: https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh
+       dest: ~/bin/openapitools/
+       mode: '0755'
+       
+       
+    - name: 'installing openapi-generator-cli'
+      command: '~/bin/openapitools/openapi-generator-cli.sh'

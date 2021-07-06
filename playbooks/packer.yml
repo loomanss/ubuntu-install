@@ -1,0 +1,21 @@
+---
+- name: install packer 
+  gather_facts: false
+  hosts: localhost
+  tasks:
+  
+  - name: Import a key from a hashicorp APT repository
+    ansible.builtin.apt_key:
+      url: https://apt.releases.hashicorp.com/gpg
+      state: present
+    
+  - name: Add hashicorp APT repository
+    apt_repository: repo='deb     https://apt.releases.hashicorp.com focal main' state=present update_cache=no
+ 
+  - name: Update apt cache
+    apt: update_cache=yes cache_valid_time=3600
+      
+  - name: Install Packer image from apt-repo
+    apt:  
+      name: ['packer','vagrant']
+      state: present

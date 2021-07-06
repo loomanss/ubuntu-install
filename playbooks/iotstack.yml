@@ -1,0 +1,80 @@
+# cat >> iotstack.yml << #eof
+---
+- name: installation  of IOT-Stack
+  hosts: localhost
+  tasks:
+    - name: Gather the packager facts
+      package_facts:
+        manager: apt
+        
+    - name: Create a Samba-share folder if not installed
+      include: tasks/sambashare.yml
+      when: "'samba-common' not in ansible_facts.packages"
+       
+    - name: include docker install if not installed
+      include: tasks/docker_install.yml
+      when: "'docker-ce' not in ansible_facts.packages"
+     
+    - name: include docker install if not installed
+      include: tasks/docker_pull.yml
+      with_items:
+        - "portainer/portainer"
+        - "homeassistant/home-assistant"
+        - "nodered/node-red"
+        - "grafana/grafana"
+        - "influxdb"
+        
+        
+    - name: Create a directory /share/data if it does not exist
+      ansible.builtin.file:
+        path: /share/data
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup
+        
+    - name: Create a directory /share/data/hassio if it does not exist
+      ansible.builtin.file:
+        path: /share/data/hassio
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup       
+       
+    - name: Create homeassistant container
+      docker_container:
+       name: hassio
+       image: homeassistant/home-assistant
+       volumes:
+          - /share/data/hassio:/config
+       network_mode: host
+       exposed_ports:
+         - 8123
+       state: started
+       restart: yes
+       
+    - name: Allow port 8123
+      community.general.ufw:
+          rule: allow
+          port: 8123
+          proto: tcp
+       
+    - name: Create portainer container
+      docker_container:
+       name: portainer
+       image: portainer/portainer
+       volumes:
+          - /var/run/docker.sock:/var/run/docker.sock 
+          - portainer_data:/data portainer/portainer-ce 
+       network_mode: host
+       exposed_ports:
+         - 9000
+       state: started
+       restart: yes
+       
+    - name: Allow port 9000
+      community.general.ufw:
+        rule: allow
+        port: 9000
+        proto: tcp
+#eof

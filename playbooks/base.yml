@@ -1,0 +1,21 @@
+# cat >> base.yml << #eof
+---
+- name: base ansible playbook
+  hosts: localhost
+  tasks:
+      
+    - name: Gather the packager facts
+      package_facts:
+        manager: apt
+    
+    - name: Print the package facts
+      debug:
+        var: ansible_facts.packages
+        
+    - name: install cod binary
+      include: tasks/cod.yml
+
+
+        
+
+   

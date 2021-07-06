@@ -1,0 +1,111 @@
+# cat >> prometheus.yml << #eof
+---
+- name: Prometheus installation playbook
+  hosts: localhost
+  
+  
+  # ansible-playbook prometheus.yml --extra-vars "skipinstall=True"
+  
+  
+  vars:
+    # GUI's
+    port_prometheus1 : 9090 
+    port_grafana: 3000
+    port_portainer: 9000
+    # OTHER
+    port_prometheus2 : 9093 
+    port_prometheus3 : 8000 
+  tasks:
+
+
+     
+     
+    - name: Install, configure, docker containers 
+      block:
+       
+       - name: Check docker is installed
+         command: dpkg-query -l docker
+         register: docker_check
+
+       - name: include docker install if not installed
+         include: tasks/docker_install.yml
+         when: docker_check.stdout.find('no packages found') != -1
+
+       - name: include docker images if not installed
+         include: tasks/docker_pull.yml
+         with_items:
+          - "portainer/portainer"
+          - "grafana/grafana"
+          - "prom/prometheus"
+      when: skipinstall == False
+      
+      
+
+       
+    - name: Create prometheus container
+      docker_container:
+       name: prometheus
+       image: prom/prometheus
+       network_mode: host
+       exposed_ports:
+         - "{{ port_prometheus1 }}"
+         - "{{ port_prometheus2 }}"
+         - "{{ port_prometheus3 }}"
+       state: started
+       restart: yes
+       
+    - name: Allow port "{{ port_prometheus1 }}" for prometheus
+      community.general.ufw:
+          rule: allow
+          port: "{{ port_prometheus1 }}"
+          proto: tcp
+          
+    - name: Allow port "{{ port_prometheus2 }}" for prometheus
+      community.general.ufw:
+          rule: allow
+          port: "{{ port_prometheus2 }}"
+          proto: tcp
+
+    - name: Allow port "{{ port_prometheus3 }}" for prometheus
+      community.general.ufw:
+          rule: allow
+          port: "{{ port_prometheus3 }}"
+          proto: tcp
+          
+    - name: Create portainer container
+      docker_container:
+       name: portainer
+       image: portainer/portainer
+       volumes:
+          - /var/run/docker.sock:/var/run/docker.sock 
+          - portainer_data:/data portainer/portainer-ce 
+       network_mode: host
+       exposed_ports:
+         - "{{ port_portainer }}"
+       state: started
+       restart: yes
+       
+    - name: Allow port "{{ port_portainer }}" for portianer
+      community.general.ufw:
+        rule: allow
+        port: "{{ port_portainer }}"
+        proto: tcp
+        
+    - name: Create Grafana container
+      docker_container:
+       name: grafana
+       image: grafana/grafana
+       network_mode: host
+       exposed_ports:
+         - "{{ port_grafana }}"
+       state: started
+       restart: yes
+       env:
+        GF_INSTALL_PLUGINS: "grafana-clock-panel,grafana-simple-json-datasource"
+      
+    - name: Allow port  "{{ port_grafana }}" for Grafana
+      community.general.ufw:
+          rule: allow
+          port:  "{{ port_grafana }}"
+          proto: tcp
+#eof

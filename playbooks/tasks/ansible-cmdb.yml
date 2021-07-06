@@ -1,0 +1,26 @@
+---
+   - name: check if pip3 is present in apt-repo
+     apt:
+       name: ['python3-pip','python3']
+       state: present
+       
+   - name: Install ansible-cmdb python package
+     pip:
+       name: ansible-cmdb
+
+   - name: Create a directory /inventory if it does not exist
+     ansible.builtin.file:
+        path: /inventory
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup
+
+   - name: list inventory from localhost
+     command: ansible -m setup --tree /inventory/ localhost
+     
+   - name: save package-list
+     copy:
+      content: "{{ ansible_facts.packages }}"
+      dest: "/inventory/packages.json"
+

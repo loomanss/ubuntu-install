@@ -1,0 +1,64 @@
+---   
+    - name: Create a directory /share if it does not exist
+      ansible.builtin.file:
+        path: /share
+        state: directory
+        mode: '0755'
+        owner: nobody
+        group: nogroup
+
+        
+    - name: Install samba packages
+      apt:  
+       name: ['samba-common','samba','samba-client']
+       state: present
+     
+    - name: Ensure Samba is running and set to start on boot.
+      service: "name=smbd state=started enabled=yes"
+    
+    - name: Update hosts
+      lineinfile:
+        path: /etc/samba/smb.conf
+        state: present
+        line: "{{ item }}"
+      with_items:
+          - '[share]'
+          - '   path = /share'
+          - '   writable = yes'
+          - '   browsable = yes'
+          - '   read only = no'
+          - '   force user = nobody'
+          - '   force create mode = 0777'
+          - '   force directory mode = 0777'
+          - '   guest only = yes'
+          - '   guest ok = yes'
+          - '   # available = yes'
+          - '   # valid users = nobody'
+          - '   # public = yes'
+
+          
+    - name: set read-write recurse
+      command: chmod 0775 /share/ -R
+ 
+    - name: set read-write recurse
+      command: chown nobody:nogroup /share/ -R
+     
+    - name: ufw service on
+      service:
+        name: ufw
+        state: restarted
+      become: true
+      
+    - name: ufw configure samba
+      command: ufw allow Samba
+      
+    - name: restart smbd
+      service:
+        name: smbd
+        state: restarted
+      become: true
+     
+    - name: show path to samba server 
+      ansible.builtin.debug:
+        msg:
+          -  'share path is \\{{ ansible_default_ipv4.address }}\share\'
