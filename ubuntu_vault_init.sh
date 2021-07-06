@@ -12,7 +12,7 @@ if [[ -f "/usr/local/bin/bw" ]]; then
   sudo rm /usr/local/bin/bw
 fi
 
-sudo apt install git curl jq
+# sudo apt install git curl jq
 
 
 if [[ -z "${USER_EMAIL}" ]]; then
