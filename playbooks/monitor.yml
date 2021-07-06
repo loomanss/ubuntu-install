@@ -1,0 +1,61 @@
+---
+- name : List of monitoring tasks
+  vars:
+     environments: ['production']
+     protocol: https
+     projectname: supper app
+     base_url : https://projectnaam.be
+     username : 'rc12345'
+     secret : "{{ mysecret}}"
+     alert_email: mijnteam@digipolis.be
+     loglevel: info
+     tags: acpaas
+     host_group: http-checks
+     port: 8080
+     timeout: 10
+
+- tasks :
+  - name: "{{ projectname }} -status-ping"
+    Description: '{{ base_url }}'
+    type: '{{ protocol }}'
+    environment: production
+    delegate_to: checkmk-aws
+    alert:
+      email: '{{ alert_email }}'
+    loglevel:  '{{ loglevel }}'
+    source:
+      uri: /status/ping
+      port: '{{ port }}'
+      timeout: '{{ timeout }}'
+      status_code: 200
+      headers:
+        key1: one
+        key2: two
+      force_basic_auth: yes
+      username: '{{ username }}'
+      password: '{{ mysecret }}'
+      expected_response_headers:
+      expected_response_content: "\"status\":\"ok\"" 
+  - name: "{{ projectname }} -status-monitor"
+    Description: '{{ base_url }}'
+    type: '{{ protocol }}'
+    environment: production
+    tags: acpaas
+    host_group: http-checks
+    delegate_to: checkmk-aws
+    alert:
+      email: '{{ alert_email }}'
+    loglevel:  '{{ loglevel }}'
+    source:
+      uri: /status/monitor
+      port: {{ port }}
+      timeout: {{ timeout }}
+      status_code: 200
+      headers:
+        key1: one
+        key2: two
+      force_basic_auth: yes
+      expected_response_headers:
+      expected_response_content: "\"components\":\"ok\"" 
+      username: '{{ username }}'
+      password: '{{ mysecret }}'
