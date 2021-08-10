@@ -2,6 +2,8 @@
 
 # wget -qO - https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh | bash 
 
+# wget https://raw.githubusercontent.com/loomanss/ubuntu-install/main/ubuntu_vault_init.sh  && chmod +x ubuntu_vault_init.sh && ./ubuntu_vault_init.sh 
+
 if [[ -f "/tmp/vault.zip" ]]; then
   echo "removing old download version..."
   rm /tmp/vault.zip
