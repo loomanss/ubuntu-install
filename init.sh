@@ -52,7 +52,8 @@ sudo apt-get update -y
 sudo apt-get install ansible -y
 
 echo
-echo
+echo https://github.com/ansible-collections/community.digitalocean/issues/132
+sudo -H pip install -Iv 'resolvelib<0.6.0'
 echo INSTALL ansible galaxy community.general 
 echo -------------------------------------------------------------------------
 ansible-galaxy collection install community.general
