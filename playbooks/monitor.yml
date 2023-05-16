@@ -5,11 +5,11 @@
      protocol: https
      projectname: supper app
      base_url : https://projectnaam.be
-     username : 'rc12345'
+     username : 'my_user'
      secret : "{{ mysecret}}"
-     alert_email: mijnteam@digipolis.be
+     alert_email: mijnteam@team.be
      loglevel: info
-     tags: acpaas
+     tags: blah
      host_group: http-checks
      port: 8080
      timeout: 10
@@ -40,7 +40,7 @@
     Description: '{{ base_url }}'
     type: '{{ protocol }}'
     environment: production
-    tags: acpaas
+    tags: myteam
     host_group: http-checks
     delegate_to: checkmk-aws
     alert:
